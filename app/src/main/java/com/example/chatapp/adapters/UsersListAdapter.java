@@ -19,6 +19,11 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
 
 
     private ArrayList<UserInfo> users= new ArrayList<UserInfo>();
+    public   UsersListAdapter.UserClich mUserClich;
+
+    public UsersListAdapter(UsersListAdapter.UserClich userClich) {
+      mUserClich =userClich;
+    }
 
     @NonNull
     @Override
@@ -56,7 +61,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
         Picasso.get().load(currUser.getProfileIageUri()).placeholder(R.drawable.profile_image).into(holder.profileImage);
     }
 
-    public  class  UserViewHolder extends RecyclerView.ViewHolder{
+    public  class  UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView userNameTextView;
         TextView userStatusTextView;
         ImageView profileImage;
@@ -68,6 +73,16 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
             userNameTextView= itemView.findViewById(R.id.userName1);
             userStatusTextView = itemView.findViewById(R.id.userStatus1);
             profileImage = itemView.findViewById(R.id.profileImage1);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            mUserClich.onUserClick(users.get(getAdapterPosition()));
+        }
+    }
+
+    public  interface UserClich{
+        public  void  onUserClick(UserInfo userInfo);
     }
 }

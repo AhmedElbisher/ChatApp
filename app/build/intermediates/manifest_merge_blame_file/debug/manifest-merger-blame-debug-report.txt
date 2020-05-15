@@ -21,13 +21,13 @@
 13-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:7:22-78
 14
 15    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
-16    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+16    <!-- <uses-sdk android:minSdkVersion="14" /> -->
 17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-17-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:26:5-79
-17-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:26:22-76
+17-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:13:5-79
+17-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:13:22-76
 18
 19    <application
-19-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:9:5-46:19
+19-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:9:5-48:19
 20        android:name="androidx.multidex.MultiDexApplication"
 21        android:allowBackup="true"
 21-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:10:9-35
@@ -45,151 +45,154 @@
 28        android:testOnly="true"
 29        android:theme="@style/AppTheme" >
 29-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:15:9-40
-30        <activity
-30-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:16:9-17:75
-31            android:name="com.example.chatapp.ui.findfrends.FindFriendsActivity"
-31-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:16:19-68
-32            android:parentActivityName="com.example.chatapp.ui.main.MainActivity" />
-32-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:17:13-63
-33        <activity
-33-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:18:9-20:58
-34            android:name="com.example.chatapp.ui.register.PhoneActivity"
-34-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:19:13-54
-35            android:windowSoftInputMode="adjustResize" />
-35-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:20:13-55
-36        <activity
-36-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:21:9-24:58
-37            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-37-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:22:13-76
-38            android:theme="@style/Base.Theme.AppCompat"
-38-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:23:13-56
-39            android:windowSoftInputMode="adjustResize" /> <!-- optional (needed if default theme has no action bar) -->
-39-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:24:13-55
-40        <activity
-40-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:25:9-27:58
-41            android:name="com.example.chatapp.ui.groupchats.GroupChatActivity"
-41-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:26:13-60
-42            android:windowSoftInputMode="adjustResize" />
-42-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:27:13-55
-43        <activity
-43-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:28:9-30:58
-44            android:name="com.example.chatapp.ui.sitings.SittingsActivity"
-44-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:29:13-56
-45            android:windowSoftInputMode="adjustResize" />
-45-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:30:13-55
-46        <activity
-46-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:31:9-33:58
-47            android:name="com.example.chatapp.ui.register.RegisterActivity"
-47-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:32:13-57
-48            android:windowSoftInputMode="adjustResize" />
-48-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:33:13-55
-49        <activity
-49-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:34:9-36:58
-50            android:name="com.example.chatapp.ui.login.LoginActivity"
-50-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:35:13-51
-51            android:windowSoftInputMode="adjustResize" />
-51-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:36:13-55
-52        <activity
-52-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:37:9-45:20
-53            android:name="com.example.chatapp.ui.main.MainActivity"
-53-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:38:13-49
-54            android:windowSoftInputMode="adjustResize" >
-54-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:39:13-55
-55            <intent-filter>
-55-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:40:13-44:29
-56                <action android:name="android.intent.action.MAIN" />
-56-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:41:17-69
-56-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:41:25-66
-57
-58                <category android:name="android.intent.category.LAUNCHER" />
-58-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:43:17-77
-58-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:43:27-74
-59            </intent-filter>
-60        </activity>
-61
-62        <provider
-62-->[com.squareup.picasso:picasso:2.71828] /home/ahmed/.gradle/caches/transforms-2/files-2.1/a3a30ff0cdcea1b63c6678809eb443d1/jetified-picasso-2.71828/AndroidManifest.xml:8:9-11:40
-63            android:name="com.squareup.picasso.PicassoProvider"
-63-->[com.squareup.picasso:picasso:2.71828] /home/ahmed/.gradle/caches/transforms-2/files-2.1/a3a30ff0cdcea1b63c6678809eb443d1/jetified-picasso-2.71828/AndroidManifest.xml:9:13-64
-64            android:authorities="com.example.chatapp.com.squareup.picasso"
-64-->[com.squareup.picasso:picasso:2.71828] /home/ahmed/.gradle/caches/transforms-2/files-2.1/a3a30ff0cdcea1b63c6678809eb443d1/jetified-picasso-2.71828/AndroidManifest.xml:10:13-72
-65            android:exported="false" />
-65-->[com.squareup.picasso:picasso:2.71828] /home/ahmed/.gradle/caches/transforms-2/files-2.1/a3a30ff0cdcea1b63c6678809eb443d1/jetified-picasso-2.71828/AndroidManifest.xml:11:13-37
-66
-67        <service
-67-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:30:9-36:19
-68            android:name="com.google.firebase.components.ComponentDiscoveryService"
-68-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:31:13-84
-69            android:directBootAware="true"
-69-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
-70            android:exported="false" >
-70-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:32:13-37
-71            <meta-data
-71-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:33:13-35:85
-72                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
-72-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:34:17-107
-73                android:value="com.google.firebase.components.ComponentRegistrar" />
-73-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:35:17-82
-74            <meta-data
-74-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:36:13-38:85
-75                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-75-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:37:17-109
-76                android:value="com.google.firebase.components.ComponentRegistrar" />
-76-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:38:17-82
-77            <meta-data
-77-->[com.google.firebase:firebase-database:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/6d58a424dc6149d399396bb9aa7c6dcf/jetified-firebase-database-19.3.0/AndroidManifest.xml:32:13-34:85
-78                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-78-->[com.google.firebase:firebase-database:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/6d58a424dc6149d399396bb9aa7c6dcf/jetified-firebase-database-19.3.0/AndroidManifest.xml:33:17-109
-79                android:value="com.google.firebase.components.ComponentRegistrar" />
-79-->[com.google.firebase:firebase-database:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/6d58a424dc6149d399396bb9aa7c6dcf/jetified-firebase-database-19.3.0/AndroidManifest.xml:34:17-82
-80            <meta-data
-80-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:20:13-22:85
-81                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-81-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:21:17-111
-82                android:value="com.google.firebase.components.ComponentRegistrar" />
-82-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:22:17-82
-83        </service>
-84
-85        <activity
-85-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:24:9-31:50
-86            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
-86-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:25:13-85
-87            android:excludeFromRecents="true"
-87-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:26:13-46
-88            android:exported="true"
-88-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:27:13-36
-89            android:launchMode="singleTask"
-89-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:28:13-44
-90            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
-90-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:29:13-102
-91            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-91-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:30:13-72
-92        <activity
-92-->[com.google.android.gms:play-services-base:17.1.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/708d0331872056d4888fd74b722205d6/jetified-play-services-base-17.1.0/AndroidManifest.xml:23:9-26:75
-93            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-93-->[com.google.android.gms:play-services-base:17.1.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/708d0331872056d4888fd74b722205d6/jetified-play-services-base-17.1.0/AndroidManifest.xml:24:13-79
-94            android:exported="false"
-94-->[com.google.android.gms:play-services-base:17.1.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/708d0331872056d4888fd74b722205d6/jetified-play-services-base-17.1.0/AndroidManifest.xml:25:13-37
-95            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-95-->[com.google.android.gms:play-services-base:17.1.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/708d0331872056d4888fd74b722205d6/jetified-play-services-base-17.1.0/AndroidManifest.xml:26:13-72
-96
-97        <provider
-97-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
-98            android:name="com.google.firebase.provider.FirebaseInitProvider"
-98-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
-99            android:authorities="com.example.chatapp.firebaseinitprovider"
-99-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
-100            android:exported="false"
-100-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
-101            android:initOrder="100" />
-101-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
-102
-103        <meta-data
-103-->[com.google.android.gms:play-services-basement:17.0.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/18f93a0fcb93f6bb116640a876dd6e4f/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
-104            android:name="com.google.android.gms.version"
-104-->[com.google.android.gms:play-services-basement:17.0.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/18f93a0fcb93f6bb116640a876dd6e4f/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
-105            android:value="@integer/google_play_services_version" />
-105-->[com.google.android.gms:play-services-basement:17.0.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/18f93a0fcb93f6bb116640a876dd6e4f/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
-106    </application>
-107
-108</manifest>
+30        <activity android:name="com.example.chatapp.ui.profile.FriendProfileActivity" />
+30-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:16:9-79
+30-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:16:19-67
+31        <activity
+31-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:17:9-19:66
+32            android:name="com.example.chatapp.ui.findfrends.FindFriendsActivity"
+32-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:18:13-62
+33            android:parentActivityName="com.example.chatapp.ui.main.MainActivity" />
+33-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:19:13-63
+34        <activity
+34-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:20:9-22:58
+35            android:name="com.example.chatapp.ui.register.PhoneActivity"
+35-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:21:13-54
+36            android:windowSoftInputMode="adjustResize" />
+36-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:22:13-55
+37        <activity
+37-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:23:9-26:58
+38            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+38-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:24:13-76
+39            android:theme="@style/Base.Theme.AppCompat"
+39-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:25:13-56
+40            android:windowSoftInputMode="adjustResize" /> <!-- optional (needed if default theme has no action bar) -->
+40-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:26:13-55
+41        <activity
+41-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:27:9-29:58
+42            android:name="com.example.chatapp.ui.groupchats.GroupChatActivity"
+42-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:28:13-60
+43            android:windowSoftInputMode="adjustResize" />
+43-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:29:13-55
+44        <activity
+44-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:30:9-32:58
+45            android:name="com.example.chatapp.ui.sitings.SittingsActivity"
+45-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:31:13-56
+46            android:windowSoftInputMode="adjustResize" />
+46-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:32:13-55
+47        <activity
+47-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:33:9-35:58
+48            android:name="com.example.chatapp.ui.register.RegisterActivity"
+48-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:34:13-57
+49            android:windowSoftInputMode="adjustResize" />
+49-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:35:13-55
+50        <activity
+50-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:36:9-38:58
+51            android:name="com.example.chatapp.ui.login.LoginActivity"
+51-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:37:13-51
+52            android:windowSoftInputMode="adjustResize" />
+52-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:38:13-55
+53        <activity
+53-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:39:9-47:20
+54            android:name="com.example.chatapp.ui.main.MainActivity"
+54-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:40:13-49
+55            android:windowSoftInputMode="adjustResize" >
+55-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:41:13-55
+56            <intent-filter>
+56-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:42:13-46:29
+57                <action android:name="android.intent.action.MAIN" />
+57-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:43:17-69
+57-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:43:25-66
+58
+59                <category android:name="android.intent.category.LAUNCHER" />
+59-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:45:17-77
+59-->/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/AndroidManifest.xml:45:27-74
+60            </intent-filter>
+61        </activity>
+62
+63        <provider
+63-->[com.squareup.picasso:picasso:2.71828] /home/ahmed/.gradle/caches/transforms-2/files-2.1/a3a30ff0cdcea1b63c6678809eb443d1/jetified-picasso-2.71828/AndroidManifest.xml:8:9-11:40
+64            android:name="com.squareup.picasso.PicassoProvider"
+64-->[com.squareup.picasso:picasso:2.71828] /home/ahmed/.gradle/caches/transforms-2/files-2.1/a3a30ff0cdcea1b63c6678809eb443d1/jetified-picasso-2.71828/AndroidManifest.xml:9:13-64
+65            android:authorities="com.example.chatapp.com.squareup.picasso"
+65-->[com.squareup.picasso:picasso:2.71828] /home/ahmed/.gradle/caches/transforms-2/files-2.1/a3a30ff0cdcea1b63c6678809eb443d1/jetified-picasso-2.71828/AndroidManifest.xml:10:13-72
+66            android:exported="false" />
+66-->[com.squareup.picasso:picasso:2.71828] /home/ahmed/.gradle/caches/transforms-2/files-2.1/a3a30ff0cdcea1b63c6678809eb443d1/jetified-picasso-2.71828/AndroidManifest.xml:11:13-37
+67
+68        <service
+68-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:17:9-23:19
+69            android:name="com.google.firebase.components.ComponentDiscoveryService"
+69-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:18:13-84
+70            android:directBootAware="true"
+70-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:34:13-43
+71            android:exported="false" >
+71-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:19:13-37
+72            <meta-data
+72-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:20:13-22:85
+73                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+73-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:21:17-111
+74                android:value="com.google.firebase.components.ComponentRegistrar" />
+74-->[com.google.firebase:firebase-firestore:21.4.3] /home/ahmed/.gradle/caches/transforms-2/files-2.1/95346d48cc4c4bf4d09d69e5b25d0dde/jetified-firebase-firestore-21.4.3/AndroidManifest.xml:22:17-82
+75            <meta-data
+75-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:33:13-35:85
+76                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+76-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:34:17-107
+77                android:value="com.google.firebase.components.ComponentRegistrar" />
+77-->[com.google.firebase:firebase-storage:19.1.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/30188dbbdc24c9afa22c1a2eb90100e8/jetified-firebase-storage-19.1.1/AndroidManifest.xml:35:17-82
+78            <meta-data
+78-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:36:13-38:85
+79                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+79-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:37:17-109
+80                android:value="com.google.firebase.components.ComponentRegistrar" />
+80-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:38:17-82
+81            <meta-data
+81-->[com.google.firebase:firebase-database:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/6d58a424dc6149d399396bb9aa7c6dcf/jetified-firebase-database-19.3.0/AndroidManifest.xml:32:13-34:85
+82                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+82-->[com.google.firebase:firebase-database:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/6d58a424dc6149d399396bb9aa7c6dcf/jetified-firebase-database-19.3.0/AndroidManifest.xml:33:17-109
+83                android:value="com.google.firebase.components.ComponentRegistrar" />
+83-->[com.google.firebase:firebase-database:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/6d58a424dc6149d399396bb9aa7c6dcf/jetified-firebase-database-19.3.0/AndroidManifest.xml:34:17-82
+84        </service>
+85
+86        <activity
+86-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:24:9-31:50
+87            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+87-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:25:13-85
+88            android:excludeFromRecents="true"
+88-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:26:13-46
+89            android:exported="true"
+89-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:27:13-36
+90            android:launchMode="singleTask"
+90-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:28:13-44
+91            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+91-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:29:13-102
+92            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+92-->[com.google.firebase:firebase-auth:19.3.1] /home/ahmed/.gradle/caches/transforms-2/files-2.1/1a1c462b21ddd610213266ea1949223b/jetified-firebase-auth-19.3.1/AndroidManifest.xml:30:13-72
+93        <activity
+93-->[com.google.android.gms:play-services-base:17.1.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/708d0331872056d4888fd74b722205d6/jetified-play-services-base-17.1.0/AndroidManifest.xml:23:9-26:75
+94            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+94-->[com.google.android.gms:play-services-base:17.1.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/708d0331872056d4888fd74b722205d6/jetified-play-services-base-17.1.0/AndroidManifest.xml:24:13-79
+95            android:exported="false"
+95-->[com.google.android.gms:play-services-base:17.1.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/708d0331872056d4888fd74b722205d6/jetified-play-services-base-17.1.0/AndroidManifest.xml:25:13-37
+96            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+96-->[com.google.android.gms:play-services-base:17.1.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/708d0331872056d4888fd74b722205d6/jetified-play-services-base-17.1.0/AndroidManifest.xml:26:13-72
+97
+98        <provider
+98-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:26:9-30:39
+99            android:name="com.google.firebase.provider.FirebaseInitProvider"
+99-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:27:13-77
+100            android:authorities="com.example.chatapp.firebaseinitprovider"
+100-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:28:13-72
+101            android:exported="false"
+101-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:29:13-37
+102            android:initOrder="100" />
+102-->[com.google.firebase:firebase-common:19.3.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/474dc9d2916392b837d87134ccbbf673/jetified-firebase-common-19.3.0/AndroidManifest.xml:30:13-36
+103
+104        <meta-data
+104-->[com.google.android.gms:play-services-basement:17.0.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/18f93a0fcb93f6bb116640a876dd6e4f/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+105            android:name="com.google.android.gms.version"
+105-->[com.google.android.gms:play-services-basement:17.0.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/18f93a0fcb93f6bb116640a876dd6e4f/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+106            android:value="@integer/google_play_services_version" />
+106-->[com.google.android.gms:play-services-basement:17.0.0] /home/ahmed/.gradle/caches/transforms-2/files-2.1/18f93a0fcb93f6bb116640a876dd6e4f/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+107    </application>
+108
+109</manifest>

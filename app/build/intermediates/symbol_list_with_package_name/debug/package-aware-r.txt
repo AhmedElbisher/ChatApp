@@ -1628,6 +1628,9 @@ id fitToContents
 id fixed
 id fogetPassword
 id forever
+id friendName
+id friendStatus
+id friendprofile
 id ghost_view
 id ghost_view_holder
 id gone
@@ -1755,6 +1758,7 @@ id select_dialog_listview
 id selected
 id sendCodeButton
 id sendCodeButtonCard
+id send_massage
 id shortcut
 id showCustom
 id showHome
@@ -1903,6 +1907,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_find_friends
+layout activity_friend_profile
 layout activity_group_chat
 layout activity_login
 layout activity_main

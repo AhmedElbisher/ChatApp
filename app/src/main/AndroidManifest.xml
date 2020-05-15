@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.findfrends.FindFriendsActivity"
-            android:parentActivityName=".ui.main.MainActivity"></activity>
+        <activity android:name=".ui.profile.FriendProfileActivity"></activity>
+        <activity
+            android:name=".ui.findfrends.FindFriendsActivity"
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.register.PhoneActivity"
             android:windowSoftInputMode="adjustResize" />

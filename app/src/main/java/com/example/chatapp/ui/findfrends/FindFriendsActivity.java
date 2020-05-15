@@ -1,5 +1,6 @@
 package com.example.chatapp.ui.findfrends;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -13,12 +14,14 @@ import com.example.chatapp.adapters.UsersListAdapter;
 import com.example.chatapp.model.UserInfo;
 import com.example.chatapp.presenters.FindFrindsInterface;
 import com.example.chatapp.presenters.Presenter;
+import com.example.chatapp.ui.profile.FriendProfileActivity;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class FindFriendsActivity extends AppCompatActivity implements FindFrindsInterface {
+public class FindFriendsActivity extends AppCompatActivity implements FindFrindsInterface,UsersListAdapter.UserClich {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -40,8 +43,9 @@ public class FindFriendsActivity extends AppCompatActivity implements FindFrinds
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Find Frinds");
+
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        usersListAdapter = new UsersListAdapter();
+        usersListAdapter = new UsersListAdapter(this);
         usersRecyclerView.setAdapter(usersListAdapter);
         presenter= Presenter.getInstance();
         presenter.setFindFrindsInterface(this);
@@ -57,6 +61,14 @@ public class FindFriendsActivity extends AppCompatActivity implements FindFrinds
 
     @Override
     public void onRetreiveUser(UserInfo currentUser) {
+        if(!currentUser.getUid().equals(presenter.currentUser.getUid()))
             usersListAdapter.setUsers(currentUser);
+    }
+
+    @Override
+    public void onUserClick(UserInfo userInfo) {
+        Intent intent = new Intent(this, FriendProfileActivity.class);
+        intent.putExtra("userInfo" ,presenter.serializeUserInfo(userInfo));
+        startActivity(intent);
     }
 }

@@ -39,6 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
 import com.google.gson.internal.$Gson$Preconditions;
 
 import java.net.MalformedURLException;
@@ -82,19 +83,19 @@ public class Presenter {
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private StorageReference mStorageReference;
-
-
-
+    private Gson gson;
     private FindFrindsInterface findFrindsInterface;
+    private  PhoneActivityInterface phoneActivityInterface;
+    private SittingInterface sittingInterface;
+    private FrindProfileInterface frindProfileInterface;
 
 
+    public void setFrindProfileInterface(FrindProfileInterface frindProfileInterface) {
+        this.frindProfileInterface = frindProfileInterface;
+    }
     public void setFindFrindsInterface(FindFrindsInterface findFrindsInterface) {
         this.findFrindsInterface = findFrindsInterface;
     }
-
-
-    private  PhoneActivityInterface phoneActivityInterface;
-    private SittingInterface sittingInterface;
     public void setPhoneActivityInterface(PhoneActivityInterface phoneActivityInterface) {
         this.phoneActivityInterface = phoneActivityInterface;
     }
@@ -126,6 +127,7 @@ public class Presenter {
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference();
         phoneAuthProvider= PhoneAuthProvider.getInstance();
+        gson= new Gson();
     }
     public static Presenter getInstance(){
         if (mPresenter == null) return new Presenter();
@@ -233,6 +235,10 @@ public class Presenter {
                             curentUser.setProfileIageUri(dataSnapshot1.getValue().toString());
                         }if(dataSnapshot1.getKey().equals("status")){
                             curentUser.setUserStatus(dataSnapshot1.getValue().toString());
+                        }
+
+                        if(dataSnapshot1.getKey().equals("uid")){
+                            curentUser.setUid(dataSnapshot1.getValue().toString());
                         }
                     }
                     findFrindsInterface.onRetreiveUser(curentUser);
@@ -528,6 +534,52 @@ public class Presenter {
         });
 
     }
+    public  void  sendMassageRequest(String senderId){
+        mRef.child("requestes").child(senderId).child(currentUser.getUid())
+                .child("tybe").setValue("sent")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                       if(task.isSuccessful()){
+                           mRef.child("requestes").child(currentUser.getUid()).child(senderId)
+                                   .child("tybe").setValue("recieved")
+                                   .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                       @Override
+                                       public void onComplete(@NonNull Task<Void> task) {
+                                           if(task.isSuccessful()){
+                                               frindProfileInterface.onSendMassageReqeustCompleted(true , "");
+
+                                           }else{
+                                               frindProfileInterface.onSendMassageReqeustCompleted(false,"can not send reciered reqaust");
+                                           }
+                                       }
+                                   });
+                       }else{
+                           frindProfileInterface.onSendMassageReqeustCompleted(false,"can not send a sent reqaust");
+
+                       }
+                    }
+                });
+    }
+    public void checkRequestState(String  senderId){
+        mRef.child("requestes").child(senderId).child(currentUser.getUid())
+                .child("tybe").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    String state = dataSnapshot.getValue().toString();
+                    if(state.equals("sent")) frindProfileInterface.onSendMassageReqeustCompleted(true,"");
+                }else{
+                    frindProfileInterface.onSendMassageReqeustCompleted(false,"");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private String getDate(){
         Calendar calendar = Calendar.getInstance();
@@ -560,6 +612,14 @@ public class Presenter {
     public void goToPhonrActivity(Context context){
         Intent intent = new Intent(context.getApplicationContext(), PhoneActivity.class);
         context.startActivity(intent);
+    }
+
+    public String serializeUserInfo(UserInfo userInfo){
+        return gson.toJson(userInfo);
+
+    }
+    public UserInfo deserializeUserInfo(String json){
+        return gson.fromJson(json,UserInfo.class);
     }
 
 

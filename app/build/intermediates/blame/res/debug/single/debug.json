@@ -112,6 +112,10 @@
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/mipmap-anydpi-v26/email_round.xml"
     },
     {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/layout_activity_friend_profile.xml.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/layout/activity_friend_profile.xml"
+    },
+    {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_email_black_24dp.png.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_email_black_24dp.png"
     },

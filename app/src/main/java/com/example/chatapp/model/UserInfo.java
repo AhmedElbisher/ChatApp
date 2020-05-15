@@ -5,7 +5,19 @@ import android.net.wifi.p2p.WifiP2pManager;
 import java.security.PublicKey;
 
 public class UserInfo {
-    private String userName,userStatus,profileIageUri;
+    private String userName;
+    private String userStatus;
+    private String profileIageUri;
+
+    public String getUid() {
+        return Uid;
+    }
+
+    public void setUid(String uid) {
+        Uid = uid;
+    }
+
+    private String Uid;
     public UserInfo(){
 
     }
@@ -16,6 +28,7 @@ public class UserInfo {
                 "userName='" + userName + '\'' +
                 ", userStatus='" + userStatus + '\'' +
                 ", profileIageUri='" + profileIageUri + '\'' +
+                ", Uid='" + Uid + '\'' +
                 '}';
     }
 
