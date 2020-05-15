@@ -152,6 +152,14 @@
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-xhdpi/email_foreground.png"
     },
     {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/layout_activity_find_friends.xml.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/layout/activity_find_friends.xml"
+    },
+    {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/layout_users_list_item.xml.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/layout/users_list_item.xml"
+    },
+    {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/layout_activity_register.xml.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/layout/activity_register.xml"
     },

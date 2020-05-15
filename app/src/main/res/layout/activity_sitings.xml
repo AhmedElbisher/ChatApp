@@ -47,11 +47,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/profile_image"
-            app:civ_border_color="#FF000000"
+            app:civ_border_color="@android:color/darker_gray"
             app:civ_border_width="2dp" />
 
         <androidx.cardview.widget.CardView
@@ -72,11 +72,12 @@
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:hint="enter  user name"
-                android:textColorHint="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textAlignment="center"
                 android:id="@+id/userName"
                 android:inputType="textMultiLine"
                 android:padding="5dp"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textColor="@android:color/black"
                 />
 
@@ -101,10 +102,11 @@
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:hint="input your status status"
-                android:textColorHint="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textAlignment="center"
                 android:inputType="textEmailAddress"
                 android:padding="5dp"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textColor="@android:color/black"
                 />
 
@@ -112,7 +114,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             app:cardCornerRadius="16dp"
@@ -125,19 +127,23 @@
             >
             <Button
                 android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:padding="16dp"
                 android:id="@+id/update"
                 android:background="@android:color/holo_blue_dark"
-                android:layout_width="match_parent"
-                android:textSize="25sp"
+                android:textSize="15sp"
                 android:text="Update"
-                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
                 />
 
         </androidx.cardview.widget.CardView>
         </LinearLayout>
 
 
-
     </androidx.cardview.widget.CardView>
+
+
 
 </RelativeLayout>

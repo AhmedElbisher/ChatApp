@@ -1704,6 +1704,7 @@ id notification_main_column
 id notification_main_column_container
 id off
 id on
+id onLineImage
 id onTouch
 id outline
 id oval
@@ -1718,6 +1719,7 @@ id percent
 id phoneNumberCard
 id phoneNumberEditText
 id pin
+id profileImage1
 id profile_image
 id progress_circular
 id progress_horizontal
@@ -1823,8 +1825,11 @@ id up
 id update
 id useLogo
 id userName
+id userName1
 id userNameCard
 id userStatus
+id userStatus1
+id usersRecyclerView
 id verificationCodeEditText
 id verificationCodeTextCard
 id verifyButton
@@ -1897,6 +1902,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_find_friends
 layout activity_group_chat
 layout activity_login
 layout activity_main
@@ -1984,6 +1990,7 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+layout users_list_item
 menu crop_image_menu
 menu menu
 mipmap email

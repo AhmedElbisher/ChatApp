@@ -3,6 +3,7 @@ package com.example.chatapp.presenters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.nfc.cardemulation.HostApduService;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
@@ -12,11 +13,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.chatapp.model.UserInfo;
+import com.example.chatapp.ui.findfrends.FindFriendsActivity;
 import com.example.chatapp.ui.login.LoginActivity;
 import com.example.chatapp.ui.main.MainActivity;
 import com.example.chatapp.ui.register.PhoneActivity;
 import com.example.chatapp.ui.sitings.SittingsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -31,7 +36,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.google.gson.internal.$Gson$Preconditions;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -70,8 +81,16 @@ public class Presenter {
     private PhoneAuthProvider phoneAuthProvider;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
+    private StorageReference mStorageReference;
 
 
+
+    private FindFrindsInterface findFrindsInterface;
+
+
+    public void setFindFrindsInterface(FindFrindsInterface findFrindsInterface) {
+        this.findFrindsInterface = findFrindsInterface;
+    }
 
 
     private  PhoneActivityInterface phoneActivityInterface;
@@ -189,6 +208,65 @@ public class Presenter {
                 }else{
                     sittingInterface.onRetreiveUserData(NO_DATA ,"","","" );
                 }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+    public void retreiveUsers(){
+        mRef.child("users").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                UserInfo curentUser = new UserInfo();
+                if(dataSnapshot.exists()){
+                    Iterator iterator = dataSnapshot.getChildren().iterator();
+                    while (iterator.hasNext()){
+                        DataSnapshot dataSnapshot1 =(DataSnapshot) iterator.next();
+                        if(dataSnapshot1.getKey().equals("name")){
+                            curentUser.setUserName(dataSnapshot1.getValue().toString());
+                        }
+                        if(dataSnapshot1.getKey().equals("image")){
+                            curentUser.setProfileIageUri(dataSnapshot1.getValue().toString());
+                        }if(dataSnapshot1.getKey().equals("status")){
+                            curentUser.setUserStatus(dataSnapshot1.getValue().toString());
+                        }
+                    }
+                    findFrindsInterface.onRetreiveUser(curentUser);
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                UserInfo curentUser = new UserInfo();
+                if(dataSnapshot.exists()){
+                    Iterator iterator = dataSnapshot.getChildren().iterator();
+                    while (iterator.hasNext()){
+                        DataSnapshot dataSnapshot1 =(DataSnapshot) iterator.next();
+                        if(dataSnapshot1.getKey().equals("name")){
+                            curentUser.setUserName(dataSnapshot1.getValue().toString());
+                        }
+                        if(dataSnapshot1.getKey().equals("image")){
+                            curentUser.setProfileIageUri(dataSnapshot1.getValue().toString());
+                        }if(dataSnapshot1.getKey().equals("status")){
+                            curentUser.setUserStatus(dataSnapshot1.getValue().toString());
+                        }
+                    }
+                    findFrindsInterface.onRetreiveUser(curentUser);
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
             }
 
@@ -413,8 +491,43 @@ public class Presenter {
         signInWithPhoneAuthCredential(credential,activity);
 
     }
+    public  void  saveImage(Uri photoUri){
+        mStorageReference = FirebaseStorage.getInstance().getReference().child("Profile Images");
+        mStorageReference.child(currentUser.getUid()+".png").putFile(photoUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                        sittingInterface.OnUploadImageSucceded(true);
+                        while (!urlTask.isSuccessful());
+                        Uri downloadUrl = urlTask.getResult();
+                        URL imageUrl = null;
+                        try {
+                           imageUrl= new URL(downloadUrl.toString());
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                        mRef.child("users").child(currentUser.getUid()).child("image").setValue(imageUrl.toString())
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()) {
+                                            sittingInterface.OnSaveImageTOUserDAtaSucceded(true);
 
+                                        }else {
+                                            sittingInterface.OnSaveImageTOUserDAtaSucceded(false);
+                                        }
+                                    }
+                                });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                sittingInterface.OnUploadImageSucceded(false);
+            }
+        });
 
+    }
 
     private String getDate(){
         Calendar calendar = Calendar.getInstance();
@@ -427,14 +540,16 @@ public class Presenter {
         return simpleDateFormat.format(calendar.getTime());
     }
 
-
-
     public  void goToLoginActivity(Context context){
         Intent intent = new Intent(context.getApplicationContext(), LoginActivity.class);
         context.startActivity(intent);
     }
     public  void goToStings(Context context){
         Intent intent = new Intent(context.getApplicationContext(), SittingsActivity.class);
+        context.startActivity(intent);
+    }
+    public void gotoFindFriends(Context context){
+        Intent intent = new Intent(context.getApplicationContext(), FindFriendsActivity.class);
         context.startActivity(intent);
     }
     public  void goToMainActivity(Context context){

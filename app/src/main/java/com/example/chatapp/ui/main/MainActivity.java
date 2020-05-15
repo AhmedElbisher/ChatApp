@@ -79,14 +79,26 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.log_out) {
-            presenter.SignOut();
-            presenter.goToLoginActivity(this);
-        }else if(item.getItemId() == R.id.stings){
-            presenter.goToStings(this);
-        }else if( item.getItemId() == R.id.addGroup){
-            requestNewGroup();
+        switch (item.getItemId()){
+            case R.id.log_out:
+                presenter.SignOut();
+                presenter.goToLoginActivity(this);
+                break;
+            case  R.id.stings:
+                presenter.goToStings(this);
+                break;
+            case  R.id.addGroup:
+                requestNewGroup();
+                break;
+            case R.id.find_frinds:
+                presenter.gotoFindFriends(this);
+                break;
+            default:
+                break;
+
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 
