@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.chatapp.R;
 import com.example.chatapp.adapters.ViewPagerAdapter;
+import com.example.chatapp.model.UserInfo;
 import com.example.chatapp.presenters.MainActivityInterface;
 import com.example.chatapp.presenters.Presenter;
 import com.google.android.material.tabs.TabLayout;
@@ -155,4 +157,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
 
 
     }
+
+
 }

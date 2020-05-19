@@ -1491,6 +1491,7 @@ id SHIFT
 id SYM
 id TOP_END
 id TOP_START
+id acceptButton
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
 id accessibility_custom_action_1
@@ -1560,6 +1561,10 @@ id beginning
 id blocking
 id bottom
 id buttonPanel
+id buttonsLinearLayout
+id cancelButton
+id cancelCardView
+id cancelReqeust
 id cancel_action
 id cancel_button
 id center
@@ -1568,6 +1573,7 @@ id centerInside
 id center_horizontal
 id center_vertical
 id chains
+id chatToolBar
 id checkbox
 id checked
 id chip
@@ -1607,6 +1613,7 @@ id dimensions
 id direct
 id disableHome
 id dropdown_menu
+id editText
 id editText2
 id edit_query
 id end
@@ -1631,6 +1638,7 @@ id forever
 id friendName
 id friendStatus
 id friendprofile
+id friendsRecyclerView
 id ghost_view
 id ghost_view_holder
 id gone
@@ -1647,6 +1655,7 @@ id icon_only
 id ifRoom
 id image
 id imageButton
+id imageButton2
 id info
 id invisible
 id italic
@@ -1728,8 +1737,11 @@ id progress_circular
 id progress_horizontal
 id radio
 id rectangle
+id recyclerView
 id registerEmailText
 id registerPasswordText
+id requests
+id requestsRecyclerView
 id right
 id right_icon
 id right_side
@@ -1756,6 +1768,7 @@ id search_src_text
 id search_voice_btn
 id select_dialog_listview
 id selected
+id sendCardView
 id sendCodeButton
 id sendCodeButtonCard
 id send_massage
@@ -1763,6 +1776,7 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id sittingToolBar
 id skipCollapsed
 id slide
 id smallLabel
@@ -1906,6 +1920,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_chats
 layout activity_find_friends
 layout activity_friend_profile
 layout activity_group_chat
@@ -1932,6 +1947,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment_blank
 layout fragment_chats
 layout fragment_contacts
 layout fragment_group
@@ -2004,6 +2020,9 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 string Login_phone
+string Remove_frind
+string Reqest_recieve_state
+string Reqest_sent_state
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -2031,9 +2050,11 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string accept_massage_request
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
+string cancel_massage_request
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
@@ -2123,6 +2144,7 @@ string path_password_strike_through
 string pick_image_intent_chooser_title
 string project_id
 string search_menu_title
+string send_massage_request
 string status_bar_notification_info_overflow
 style AlerDailog
 style AlertDialog_AppCompat

@@ -75,7 +75,6 @@ public class GroupChatActivity extends AppCompatActivity  implements GroupActivi
         if(v.getId() == R.id.imageButton){
             presenter.sendGroupMassage(massageField.getText().toString(),groupName);
             scrollView2.fullScroll(View.FOCUS_DOWN);
-
         }
     }
 

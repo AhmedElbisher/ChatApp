@@ -1,18 +1,12 @@
 package com.example.chatapp.presenters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.nfc.cardemulation.HostApduService;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.example.chatapp.model.UserInfo;
 import com.example.chatapp.ui.findfrends.FindFriendsActivity;
 import com.example.chatapp.ui.login.LoginActivity;
@@ -40,14 +34,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
-import com.google.gson.internal.$Gson$Preconditions;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -58,15 +49,11 @@ import java.util.concurrent.TimeUnit;
 import io.grpc.okhttp.internal.Util;
 
 public class Presenter {
-
     //  when retrive data for user sitting it uses this const to identify which collection is retrived
     public  static final  int USER_STATUS =1;
     public  static final  int USER_only =1;
     public  static final  int USER_STATUS_IMAGE =2;
     public  static final  int NO_DATA =0;
-
-
-
 
     private FirebaseAuth mAuth;
     public static Presenter mPresenter;
@@ -88,7 +75,15 @@ public class Presenter {
     private  PhoneActivityInterface phoneActivityInterface;
     private SittingInterface sittingInterface;
     private FrindProfileInterface frindProfileInterface;
+    private ContactsInterface contactsInterface;
+    private  FindRequestsInterface findRequestsInterface;
 
+    public void setFindRequestsInterface(FindRequestsInterface findRequestsInterface) {
+       this.findRequestsInterface = findRequestsInterface;
+    }
+    public void setContactsInterface(ContactsInterface contactsInterface) {
+        this.contactsInterface = contactsInterface;
+    }
 
     public void setFrindProfileInterface(FrindProfileInterface frindProfileInterface) {
         this.frindProfileInterface = frindProfileInterface;
@@ -158,6 +153,9 @@ public class Presenter {
         }
 
     }
+    public  String getcurrentUserId(){
+        return mAuth.getCurrentUser().getUid();
+    }
     public void UpdateuserInfo(String userName,String userStatus){
         String defualStatus = "I am here in chatAPP";
         if(!(TextUtils.isEmpty(userStatus))){ defualStatus = userStatus;}
@@ -166,11 +164,11 @@ public class Presenter {
 
         }else{
             String userId = mAuth.getCurrentUser().getUid();
-            Map<String, String> profileInfo = new HashMap<String,String>();
+            Map<String, Object> profileInfo = new HashMap<String,Object>();
             profileInfo.put("uid",userId);
             profileInfo.put("name" , userName);
             profileInfo.put("status",defualStatus);
-            mRef.child("users").child(userId).setValue(profileInfo)
+            mRef.child("users").child(userId).updateChildren(profileInfo)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -322,6 +320,7 @@ public class Presenter {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                currentUser = mAuth.getCurrentUser();
                                 loginInterface.onLogInSuccedded();
                             }else{
                                 loginInterface.onLogInFailed(task.getException().toString());
@@ -504,7 +503,6 @@ public class Presenter {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-                        sittingInterface.OnUploadImageSucceded(true);
                         while (!urlTask.isSuccessful());
                         Uri downloadUrl = urlTask.getResult();
                         URL imageUrl = null;
@@ -513,6 +511,8 @@ public class Presenter {
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         }
+                        sittingInterface.OnUploadImageSucceded(true ,imageUrl.toString());
+
                         mRef.child("users").child(currentUser.getUid()).child("image").setValue(imageUrl.toString())
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -529,10 +529,33 @@ public class Presenter {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                sittingInterface.OnUploadImageSucceded(false);
+                sittingInterface.OnUploadImageSucceded(false,null);
             }
         });
 
+    }
+    public void checkRequestState(String  senderId){
+        mRef.child("requestes").child(senderId).child(currentUser.getUid())
+                .child("tybe").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    String state = dataSnapshot.getValue().toString();
+                    if(state.equals("sent")) frindProfileInterface.onSendMassageReqeustCompleted(true,"sent");
+                    else{
+                        frindProfileInterface.onSendMassageReqeustCompleted(true,"recieved");
+                    }
+                }else{
+                    frindProfileInterface.onSendMassageReqeustCompleted(false,"");
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
     public  void  sendMassageRequest(String senderId){
         mRef.child("requestes").child(senderId).child(currentUser.getUid())
@@ -547,7 +570,7 @@ public class Presenter {
                                        @Override
                                        public void onComplete(@NonNull Task<Void> task) {
                                            if(task.isSuccessful()){
-                                               frindProfileInterface.onSendMassageReqeustCompleted(true , "");
+                                               frindProfileInterface.onSendMassageReqeustCompleted(true , "sent");
 
                                            }else{
                                                frindProfileInterface.onSendMassageReqeustCompleted(false,"can not send reciered reqaust");
@@ -560,26 +583,194 @@ public class Presenter {
                        }
                     }
                 });
+
     }
-    public void checkRequestState(String  senderId){
+    public void cancelMassageRequest(String senderId,boolean activeCallBack){
         mRef.child("requestes").child(senderId).child(currentUser.getUid())
-                .child("tybe").addValueEventListener(new ValueEventListener() {
+                .removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            mRef.child("requestes").child(currentUser.getUid()).child(senderId)
+                                    .removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                if(activeCallBack) frindProfileInterface.onCancelMasssagrReqeustComplete(true ,"");
+
+                                            }else{
+                                               if(activeCallBack) frindProfileInterface.onCancelMasssagrReqeustComplete(false,"can not send reciered reqaust");
+                                            }
+                                        }
+                                    });
+                        }else{
+                            if(activeCallBack) frindProfileInterface.onSendMassageReqeustCompleted(false,"can not send a sent reqaust");
+
+                        }
+                    }
+                });
+
+    }
+    public void addfriend(String  senderId,boolean activeCallback){
+        mRef.child("contacts").child(senderId).child(currentUser.getUid())
+                .child("cantact").setValue("saved")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            mRef.child("contacts").child(currentUser.getUid()).child(senderId)
+                                    .child("cantact").setValue("saved")
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                               if(activeCallback) frindProfileInterface.onAcceptReqeustCompleted(true);
+                                            }else
+                                            {
+                                                if(activeCallback)frindProfileInterface.onAcceptReqeustCompleted(false);
+
+                                            }
+
+                                        }
+                                    });
+
+                        }
+                    }
+                });
+
+        cancelMassageRequest(senderId,false);
+    }
+    public void removeFriend(String friendId){
+        mRef.child("contacts").child(friendId).child(currentUser.getUid())
+                .removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            mRef.child("contacts").child(currentUser.getUid()).child(friendId)
+                                    .removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                frindProfileInterface.onRemoveFriendCompleted(true);
+                                            }else
+                                            {
+                                                frindProfileInterface.onRemoveFriendCompleted(false);
+
+                                            }
+
+                                        }
+                                    });
+                        }
+                    }
+                });
+    }
+    public  void  checkFriends(String friendId){
+        mRef.child("contacts").child(friendId).child(currentUser.getUid())
+                .child("cantact").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    String state = dataSnapshot.getValue().toString();
-                    if(state.equals("sent")) frindProfileInterface.onSendMassageReqeustCompleted(true,"");
+                    String cantactState = dataSnapshot.getValue().toString();
+                    if(cantactState.equals("saved")) frindProfileInterface.onAcceptReqeustCompleted(true);
+                    else{
+                        frindProfileInterface.onAcceptReqeustCompleted(false);                    }
                 }else{
-                    frindProfileInterface.onSendMassageReqeustCompleted(false,"");
+                    frindProfileInterface.onAcceptReqeustCompleted(false);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
     }
+    public void findcontacts(){
+        mRef.child("contacts").child(currentUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        ArrayList<UserInfo> result = new ArrayList<>();
+                        if(dataSnapshot.exists()){
+                            Iterator iterator = dataSnapshot.getChildren().iterator();
+                            while (iterator.hasNext()){
+                                String friendId = ((DataSnapshot)iterator.next()).getKey();
+                                findUserInfoById(result,friendId,"contents");
+                            }
+                        }else {
+                           contactsInterface.OnFindContactComplete(false,null);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    public  void  findRequests(){
+        mRef.child("requestes").child(currentUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        ArrayList<UserInfo> result = new ArrayList<>();
+                        if(dataSnapshot.exists()){
+                            Iterator iterator = dataSnapshot.getChildren().iterator();
+                            while (iterator.hasNext()){
+                                DataSnapshot dataSnapshot1 = (DataSnapshot)iterator.next();
+                                String requesttybe = dataSnapshot1.child("tybe").getValue().toString();
+                                String friendId = dataSnapshot1.getKey();
+                                if(requesttybe.equals("sent")) findUserInfoById(result,friendId,"req");
+                            }
+                        }else {
+                           findRequestsInterface.OnFindReqeustsComplete(false,null);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+    }
+
+    public  void  findUserInfoById(ArrayList<UserInfo> result,String friendId,String funName){
+        mRef.child("users").child(friendId)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Iterator iterator = dataSnapshot.getChildren().iterator();
+                        UserInfo userInfo = new UserInfo();
+                        if(dataSnapshot.exists()){
+                            userInfo.setUserStatus(dataSnapshot.child("status").getValue().toString());
+                            if(dataSnapshot.child("image").getValue() != null) {
+                                userInfo.setProfileIageUri(dataSnapshot.child("image").getValue().toString());
+                            }
+                            userInfo.setUserName(dataSnapshot.child("name").getValue().toString());
+                            userInfo.setUid(friendId);
+                            result.add(userInfo);
+                            if(funName.equals("contents"))  contactsInterface.OnFindContactComplete(true,result);
+                            else if(funName.equals("req")) findRequestsInterface.OnFindReqeustsComplete(true,result);
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+
 
     private String getDate(){
         Calendar calendar = Calendar.getInstance();
@@ -621,6 +812,4 @@ public class Presenter {
     public UserInfo deserializeUserInfo(String json){
         return gson.fromJson(json,UserInfo.class);
     }
-
-
 }

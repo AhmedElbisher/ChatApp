@@ -17,6 +17,11 @@
         android:title="log out"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/requests"
+        android:title="requests"
+        app:showAsAction="never"/>
+
+
 
 
 </menu>

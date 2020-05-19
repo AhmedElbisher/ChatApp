@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.profile.FriendProfileActivity"></activity>
+        <activity android:name=".ui.chats.ChatsActivity"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".ui.profile.FriendProfileActivity" />
         <activity
             android:name=".ui.findfrends.FindFriendsActivity"
             android:parentActivityName=".ui.main.MainActivity" />
@@ -29,6 +32,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.sitings.SittingsActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.register.RegisterActivity"

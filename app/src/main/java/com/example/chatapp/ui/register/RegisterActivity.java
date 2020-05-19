@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterInter
     @Override
     public void onRegisterSuccess() {
         loodingBar.setVisibility(View.INVISIBLE);
-        mPresenter.goToMainActivity(this);
+        mPresenter.goToStings(this);
     }
 
     @Override

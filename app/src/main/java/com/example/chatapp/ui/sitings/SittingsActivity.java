@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.example.chatapp.R;
@@ -39,7 +39,8 @@ public class SittingsActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.update)
     Button updateButton;
     Presenter presenter;
-
+    @BindView(R.id.sittingToolBar)
+    Toolbar sittingToolBar;
 
 
     @Override
@@ -52,6 +53,10 @@ public class SittingsActivity extends AppCompatActivity implements View.OnClickL
         updateButton.setOnClickListener(this);
         profileImage.setOnClickListener(this);
         presenter.retreiveUserInfo();
+        setSupportActionBar(sittingToolBar);
+        getSupportActionBar().setTitle("Sittings");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
 
@@ -115,8 +120,12 @@ public class SittingsActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    public void OnUploadImageSucceded(boolean isSucceded) {
-        Toast.makeText(this, "Image Uploaded succedssfully", Toast.LENGTH_SHORT).show();
+    public void OnUploadImageSucceded(boolean isSucceded, String ImageUrl) {
+        if (isSucceded) {
+            Toast.makeText(this, "Image Uploaded succedssfully", Toast.LENGTH_SHORT).show();
+            Picasso.get().load(ImageUrl).into(profileImage);
+        }
+
     }
 
     @Override

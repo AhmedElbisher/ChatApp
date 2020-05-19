@@ -28,6 +28,10 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.chatapp.ui.chats.ChatsActivity"
+            android:parentActivityName="com.example.chatapp.ui.main.MainActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name="com.example.chatapp.ui.profile.FriendProfileActivity" />
         <activity
             android:name="com.example.chatapp.ui.findfrends.FindFriendsActivity"
@@ -44,6 +48,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.example.chatapp.ui.sitings.SittingsActivity"
+            android:parentActivityName="com.example.chatapp.ui.main.MainActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.example.chatapp.ui.register.RegisterActivity"

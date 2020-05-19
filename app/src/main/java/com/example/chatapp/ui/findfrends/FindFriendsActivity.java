@@ -61,8 +61,7 @@ public class FindFriendsActivity extends AppCompatActivity implements FindFrinds
 
     @Override
     public void onRetreiveUser(UserInfo currentUser) {
-        if(!currentUser.getUid().equals(presenter.currentUser.getUid()))
-            usersListAdapter.setUsers(currentUser);
+        if( !currentUser.getUid().equals(presenter.getcurrentUserId())) usersListAdapter.setUsers(currentUser);
     }
 
     @Override
@@ -70,5 +69,15 @@ public class FindFriendsActivity extends AppCompatActivity implements FindFrinds
         Intent intent = new Intent(this, FriendProfileActivity.class);
         intent.putExtra("userInfo" ,presenter.serializeUserInfo(userInfo));
         startActivity(intent);
+    }
+
+    @Override
+    public void onAcceptClic(UserInfo userInfo) {
+
+    }
+
+    @Override
+    public void onCancelClic(UserInfo userInfo) {
+
     }
 }
