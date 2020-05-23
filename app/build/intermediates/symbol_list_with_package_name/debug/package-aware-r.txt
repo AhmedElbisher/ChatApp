@@ -1394,6 +1394,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable cicular_progress_bar
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -1427,6 +1428,7 @@ drawable edit_status
 drawable email
 drawable email_background
 drawable email_foreground
+drawable file
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_calendar_black_24dp
@@ -1472,6 +1474,9 @@ drawable password
 drawable phone
 drawable profile_activity
 drawable profile_image
+drawable recierved_massage_shape
+drawable send_files
+drawable send_massage_shape
 drawable send_message
 drawable signup_photo
 drawable test_custom_background
@@ -1573,7 +1578,9 @@ id centerInside
 id center_horizontal
 id center_vertical
 id chains
-id chatToolBar
+id chatsMassageEditText
+id chatsSendMassageImageView
+id chatstoolbar
 id checkbox
 id checked
 id chip
@@ -1598,6 +1605,9 @@ id crop_image_menu_rotate_left
 id crop_image_menu_rotate_right
 id custom
 id customPanel
+id custom_lastSeen
+id custom_profileImage
+id custom_username
 id cut
 id dark
 id date_picker_actions
@@ -1613,7 +1623,6 @@ id dimensions
 id direct
 id disableHome
 id dropdown_menu
-id editText
 id editText2
 id edit_query
 id end
@@ -1655,7 +1664,6 @@ id icon_only
 id ifRoom
 id image
 id imageButton
-id imageButton2
 id info
 id invisible
 id italic
@@ -1666,6 +1674,7 @@ id left
 id light
 id line1
 id line3
+id linearLayout
 id listMode
 id list_item
 id log_out
@@ -1674,8 +1683,11 @@ id loginByPhone
 id loginEmail
 id loodingBar
 id masked
+id massageImage
 id media_actions
 id message
+id messageImageSender
+id messageImagereciever
 id middle
 id mini
 id month_grid
@@ -1731,11 +1743,12 @@ id percent
 id phoneNumberCard
 id phoneNumberEditText
 id pin
-id profileImage1
 id profile_image
+id progressBar
 id progress_circular
 id progress_horizontal
 id radio
+id recievedMassageText
 id rectangle
 id recyclerView
 id registerEmailText
@@ -1771,7 +1784,9 @@ id selected
 id sendCardView
 id sendCodeButton
 id sendCodeButtonCard
+id sendFile
 id send_massage
+id senderMassageText
 id shortcut
 id showCustom
 id showHome
@@ -1932,6 +1947,8 @@ layout activity_sitings
 layout crop_image_activity
 layout crop_image_view
 layout custom_dialog
+layout custom_massage_layout
+layout custom_toolbar
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -2091,6 +2108,7 @@ string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string fcm_fallback_notification_channel_label
 string firebase_database_url
 string forget_password
 string gcm_defaultSenderId

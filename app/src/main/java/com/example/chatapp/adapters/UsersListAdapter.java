@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatapp.R;
 import com.example.chatapp.model.UserInfo;
-import com.google.gson.internal.bind.ArrayTypeAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
     private ArrayList<UserInfo> users= new ArrayList<UserInfo>();
     public   UsersListAdapter.UserClich mUserClich;
     private  boolean isReqeust= false;
-
     private boolean ischatfragment=false;
     public void setIsReqeust(boolean reqeust) {
         isReqeust = reqeust;
@@ -67,6 +65,21 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
         notifyDataSetChanged();
     }
 
+    public  void updateuserState(UserViewHolder holder ,UserInfo userInfo ){
+        if(userInfo.getState().equals("online")){
+            holder.onlineImage.setVisibility(View.VISIBLE);
+            holder.userStatusTextView.setVisibility(View.INVISIBLE);
+
+        }else{
+            holder.onlineImage.setVisibility(View.GONE);
+            holder.userStatusTextView.setVisibility(View.VISIBLE);
+            String status = "last seen:   " + userInfo.getLastOnlinedate() + "   " + userInfo.getLastOnlinetime();
+            holder.userStatusTextView.setText(status);
+        }
+
+
+    }
+
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
@@ -78,9 +91,10 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
             holder.buttonslayouts.setVisibility(View.GONE);
         }
         if(ischatfragment){
-            holder.userStatusTextView.setText("last seen \nTime Date");
+            updateuserState(holder,currUser);
             holder.userStatusTextView.setTextColor(Color.rgb(128,128,128));
         }else{
+            holder.userStatusTextView.setVisibility(View.VISIBLE);
             if(currUser.getUserStatus() != null){
                 holder.userStatusTextView.setText(currUser.getUserStatus());
             }
@@ -98,14 +112,16 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
         TextView userStatusTextView;
         ImageView profileImage;
         LinearLayout buttonslayouts;
+        ImageView onlineImage;
         Button accept;
         Button cancel;
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             userNameTextView= itemView.findViewById(R.id.userName1);
             userStatusTextView = itemView.findViewById(R.id.userStatus1);
-            profileImage = itemView.findViewById(R.id.profileImage1);
+            profileImage = itemView.findViewById(R.id.custom_profileImage);
             buttonslayouts=itemView.findViewById(R.id.buttonsLinearLayout);
+            onlineImage=itemView.findViewById(R.id.onLineImage);
             accept=itemView.findViewById(R.id.acceptButton);
             cancel=itemView.findViewById(R.id.cancelButton);
             itemView.setOnClickListener(this);

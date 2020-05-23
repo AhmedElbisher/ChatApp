@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements LoginInterface, 
         loginByPhone.setOnClickListener(this);
         loginButton.setOnClickListener(this);
         needAccount.setOnClickListener(this);
+
     }
 
     public  void goToRegisterActivity(){

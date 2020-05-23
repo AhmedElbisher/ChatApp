@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Switch;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.chatapp.model.MassageDetails;
 import com.example.chatapp.model.UserInfo;
 import com.example.chatapp.ui.findfrends.FindFriendsActivity;
 import com.example.chatapp.ui.login.LoginActivity;
@@ -19,9 +23,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.ChildEventListener;
@@ -30,8 +36,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import java.net.MalformedURLException;
@@ -53,11 +62,12 @@ public class Presenter {
     public  static final  int USER_STATUS =1;
     public  static final  int USER_only =1;
     public  static final  int USER_STATUS_IMAGE =2;
-    public  static final  int NO_DATA =0;
+    public static final  int NO_DATA =0;
+
 
     private FirebaseAuth mAuth;
-    public static Presenter mPresenter;
-    public FirebaseUser currentUser;
+    private static Presenter mPresenter;
+    private FirebaseUser currentUser;
     private DatabaseReference mRef,mGroupRef;
     private static String userNAme;
     private FirebaseDatabase database;
@@ -77,14 +87,17 @@ public class Presenter {
     private FrindProfileInterface frindProfileInterface;
     private ContactsInterface contactsInterface;
     private  FindRequestsInterface findRequestsInterface;
+    private  SingleChatInterface singleChatInterface;
 
+    public void setSingleChatInterface(SingleChatInterface singleChatInterface) {
+        this.singleChatInterface = singleChatInterface;
+    }
     public void setFindRequestsInterface(FindRequestsInterface findRequestsInterface) {
        this.findRequestsInterface = findRequestsInterface;
     }
     public void setContactsInterface(ContactsInterface contactsInterface) {
         this.contactsInterface = contactsInterface;
     }
-
     public void setFrindProfileInterface(FrindProfileInterface frindProfileInterface) {
         this.frindProfileInterface = frindProfileInterface;
     }
@@ -93,9 +106,6 @@ public class Presenter {
     }
     public void setPhoneActivityInterface(PhoneActivityInterface phoneActivityInterface) {
         this.phoneActivityInterface = phoneActivityInterface;
-    }
-    public static String getUserNAme() {
-        return userNAme;
     }
     public void setGroupActivityInterface(GroupActivityInterface groupActivityInterface) {
         this.groupActivityInterface = groupActivityInterface;
@@ -125,8 +135,14 @@ public class Presenter {
         gson= new Gson();
     }
     public static Presenter getInstance(){
-        if (mPresenter == null) return new Presenter();
+        if (mPresenter == null) {
+            mPresenter=new Presenter();
+            return mPresenter;
+        }
         else return mPresenter;
+    }
+    public static String getUserNAme() {
+        return userNAme;
     }
     public void verifyUserExistace(){
         currentUser=mAuth.getCurrentUser();
@@ -157,35 +173,54 @@ public class Presenter {
         return mAuth.getCurrentUser().getUid();
     }
     public void UpdateuserInfo(String userName,String userStatus){
-        String defualStatus = "I am here in chatAPP";
-        if(!(TextUtils.isEmpty(userStatus))){ defualStatus = userStatus;}
         if(TextUtils.isEmpty(userName)){
             sittingInterface.onUpdateInfoComplete(false,"please inter valid username");
-
         }else{
-            String userId = mAuth.getCurrentUser().getUid();
-            Map<String, Object> profileInfo = new HashMap<String,Object>();
-            profileInfo.put("uid",userId);
-            profileInfo.put("name" , userName);
-            profileInfo.put("status",defualStatus);
-            mRef.child("users").child(userId).updateChildren(profileInfo)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                sittingInterface.onUpdateInfoComplete(true,"");
-                                Log.i("TAG", "onComplete: succeded ");
 
-                            }else {
-                                sittingInterface.onUpdateInfoComplete(false , task.getException().toString());
-                                Log.i("TAG", "onComplete: failed ");
-                            }
+            FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( new OnSuccessListener<InstanceIdResult>() {
+                @Override
+                public void onSuccess(InstanceIdResult instanceIdResult) {
+                    String deviceToken = instanceIdResult.getToken();
+                    String userId = mAuth.getCurrentUser().getUid();
+                    Map<String, Object> profileInfo = new HashMap<String,Object>();
+                    profileInfo.put("uid",userId);
+                    profileInfo.put("name" , userName);
+                    if(!(TextUtils.isEmpty(userStatus))){
+                        profileInfo.put("status",userStatus);
+                    }
+                    else{
+                        profileInfo.put("status","I am here in chatAPP");
+                    }
+                    profileInfo.put("deviceToken",deviceToken);
+                    mRef.child("users").child(userId).updateChildren(profileInfo)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        sittingInterface.onUpdateInfoComplete(true,"");
+                                        Log.i("TAG", "onComplete: succeded ");
 
-                        }
-                    });
+                                    }else {
+                                        sittingInterface.onUpdateInfoComplete(false , task.getException().toString());
+                                        Log.i("TAG", "onComplete: failed ");
+                                    }
+
+                                }
+                            });
+                }
+            });
+//            mAuth.getCurrentUser().getIdToken(true)
+//                    .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<GetTokenResult> task) {
+//                            if(task.isSuccessful()){
+//
+//                            }
+//                        }
+//                    });
+
 
         }
-
     }
     public void retreiveUserInfo(){
         String userId = mAuth.getCurrentUser().getUid();
@@ -259,6 +294,10 @@ public class Presenter {
                         }if(dataSnapshot1.getKey().equals("status")){
                             curentUser.setUserStatus(dataSnapshot1.getValue().toString());
                         }
+
+                        if(dataSnapshot1.getKey().equals("uid")){
+                            curentUser.setUid(dataSnapshot1.getValue().toString());
+                        }
                     }
                     findFrindsInterface.onRetreiveUser(curentUser);
                 }
@@ -281,10 +320,11 @@ public class Presenter {
         });
     }
     public  void SignOut(){
+        updateUserState("offline");
         mAuth.signOut();
     }
     public boolean islogin(){
-        if(currentUser != null)return true;
+        if(mAuth.getCurrentUser() != null)return true;
         else return false;
     }
     public  void  Register(String email , String password ){
@@ -320,8 +360,43 @@ public class Presenter {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                currentUser = mAuth.getCurrentUser();
-                                loginInterface.onLogInSuccedded();
+                                FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener( new OnSuccessListener<InstanceIdResult>() {
+                                    @Override
+                                    public void onSuccess(InstanceIdResult instanceIdResult) {
+                                        String deviceToken = instanceIdResult.getToken();
+                                        // Do whatever you want with your token now
+                                        // i.e. store it on SharedPreferences or DB
+                                        // or directly send it to server
+                                        Map<String , Object> map = new HashMap<>();
+                                        map.put("deviceToken",deviceToken);
+                                        mRef.child("users").child(currentUser.getUid())
+                                                .updateChildren(map)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if(task.isSuccessful()){
+                                                            loginInterface.onLogInSuccedded();
+
+                                                        }else {
+                                                            loginInterface.onLogInFailed(task.getException().toString());
+
+                                                        }
+                                                    }
+                                                });
+                                    }
+                                });
+//                                currentUser = mAuth.getCurrentUser();
+//                                currentUser.getIdToken(true)
+//                                        .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+//                                            @Override
+//                                            public void onComplete(@NonNull Task<GetTokenResult> task) {
+//                                                if(task.isSuccessful()) {
+//
+//                                                } else{
+//                                                    loginInterface.onLogInFailed(task.getException().toString());
+//                                                }
+//                                            }
+//                                        });
                             }else{
                                 loginInterface.onLogInFailed(task.getException().toString());
 
@@ -571,6 +646,7 @@ public class Presenter {
                                        public void onComplete(@NonNull Task<Void> task) {
                                            if(task.isSuccessful()){
                                                frindProfileInterface.onSendMassageReqeustCompleted(true , "sent");
+                                               pushNotification(senderId,currentUser.getUid(),"request");
 
                                            }else{
                                                frindProfileInterface.onSendMassageReqeustCompleted(false,"can not send reciered reqaust");
@@ -690,7 +766,7 @@ public class Presenter {
 
     }
     public void findcontacts(){
-        mRef.child("contacts").child(currentUser.getUid())
+        mRef.child("contacts").child(mAuth.getCurrentUser().getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -713,7 +789,6 @@ public class Presenter {
                     }
                 });
     }
-
     public  void  findRequests(){
         mRef.child("requestes").child(currentUser.getUid())
                 .addValueEventListener(new ValueEventListener() {
@@ -740,7 +815,6 @@ public class Presenter {
                 });
 
     }
-
     public  void  findUserInfoById(ArrayList<UserInfo> result,String friendId,String funName){
         mRef.child("users").child(friendId)
                 .addValueEventListener(new ValueEventListener() {
@@ -754,7 +828,17 @@ public class Presenter {
                                 userInfo.setProfileIageUri(dataSnapshot.child("image").getValue().toString());
                             }
                             userInfo.setUserName(dataSnapshot.child("name").getValue().toString());
+                            if(dataSnapshot.hasChild("userState")){
+                                userInfo.setState(dataSnapshot.child("userState").child("state").getValue().toString());
+                                userInfo.setLastOnlinedate(dataSnapshot.child("userState").child("date").getValue().toString());
+                                userInfo.setLastOnlinetime(dataSnapshot.child("userState").child("time").getValue().toString());
+                            }
                             userInfo.setUid(friendId);
+                            for(int i=0;i<result.size();i++){
+                                if(result.get(i).getUid().equals(userInfo.getUid())){
+                                    result.remove(i);
+                                }
+                            }
                             result.add(userInfo);
                             if(funName.equals("contents"))  contactsInterface.OnFindContactComplete(true,result);
                             else if(funName.equals("req")) findRequestsInterface.OnFindReqeustsComplete(true,result);
@@ -769,19 +853,128 @@ public class Presenter {
                     }
                 });
     }
-
-
-
-    private String getDate(){
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd,yyyy");
-        return simpleDateFormat.format(calendar.getTime());
+    public  String  getMessageKey(String currentUserID , String friendId){
+        return mRef.child("massages").child(currentUserID).child(friendId).push().getKey();
     }
-    private String gettime(){
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
-        return simpleDateFormat.format(calendar.getTime());
+    public  void  sendSingleChatMassage(String massage,String currentUserID , String friendId,String massageKey,String messageType){
+        if(TextUtils.isEmpty(massage)){
+            singleChatInterface.onSendMassagFailed("empty Massage");
+        }else{
+            HashMap<String ,Object> massageBody = new HashMap<>();
+            massageBody.put("massage" , massage);
+            massageBody.put("type",messageType);
+            massageBody.put("from",currentUserID);
+            massageBody.put("date",getDate());
+            massageBody.put("time",gettime());
+
+            String firstmassagepath = "massages" +'/'+currentUserID+'/'+friendId+'/'+massageKey;
+            String secondmassagepath = "massages" +'/'+friendId+'/'+currentUserID+'/'+massageKey;
+            HashMap<String , Object> refDetails = new HashMap<>();
+            refDetails.put(firstmassagepath,massageBody);
+            refDetails.put(secondmassagepath,massageBody);
+
+            mRef.updateChildren(refDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            singleChatInterface.onSendMassagSucessed();
+                        }else{
+                            singleChatInterface.onSendMassagFailed("failed to upload massage");
+                        }
+                }
+            });
+
+        }
     }
+    public void retreveSingleChatMassages(String currentUserID,String friendID){
+        mRef.child("massages").child(currentUserID).child(friendID)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            ArrayList<MassageDetails> result = new ArrayList<>();
+                            Iterator iterator = dataSnapshot.getChildren().iterator();
+                            while (iterator.hasNext()){
+                                MassageDetails temp = new MassageDetails();
+                                DataSnapshot dataSnapshot1 = ((DataSnapshot)iterator.next());
+                                Iterator iterator1=dataSnapshot1.getChildren().iterator();
+                                while (iterator1.hasNext()){
+                                    DataSnapshot dataSnapshot2 = (DataSnapshot)iterator1.next();
+                                    switch (dataSnapshot2.getKey()){
+                                        case "massage" :
+                                            temp.setMassageText(dataSnapshot2.getValue().toString());
+                                            break;
+                                        case "from" :
+                                            temp.setSenderId(dataSnapshot2.getValue().toString());
+                                            break;
+                                        case "time" :
+                                            temp.setTime(dataSnapshot2.getValue().toString());
+                                            break;
+                                        case "date" :
+                                            temp.setDate(dataSnapshot2.getValue().toString());
+                                            break;
+                                        case "type" :
+                                            temp.setType(dataSnapshot2.getValue().toString());
+                                            break;
+
+                                    }
+
+                                }
+                                result.add(temp);
+                            }
+                            singleChatInterface.onRetrieveMassagesComplete(true,result);
+                        }else{
+                            singleChatInterface.onRetrieveMassagesComplete(false,null);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        singleChatInterface.onRetrieveMassagesComplete(false,null);
+                    }
+                });
+    }
+    public  void  pushNotification(String recieverId,String senderId,String type){
+        Map<String,Object> map = new HashMap<>();
+        map.put("from",senderId);
+        map.put("type",type);
+        mRef.child("notifications").child(recieverId).push().setValue(map);
+    }
+    public void updateUserState(String state){
+        String currentDate = getDate();
+        String currentTime = gettime();
+        Map<String , Object> userState = new HashMap<>();
+        userState.put("date" , currentDate);
+        userState.put("time" , currentTime);
+        userState.put("state" , state);
+        mRef.child("users").child(getcurrentUserId()).child("userState")
+                .updateChildren(userState);
+    }
+    public  void  sendfiles(Uri fileUri , String fileType,String currendUserId , String friendID){
+        String messageKey = getMessageKey(currendUserId,friendID);
+        mStorageReference = FirebaseStorage.getInstance().getReference().child(fileType+" files");
+        mStorageReference.child(messageKey+".png").putFile(fileUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                        while (!urlTask.isSuccessful());
+                        Uri downloadUrl = urlTask.getResult();
+                        URL fileUrl = null;
+                        try {
+                            fileUrl= new URL(downloadUrl.toString());
+                            sendSingleChatMassage(fileUrl.toString(),currendUserId,friendID,messageKey,fileType);
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                singleChatInterface.onSendMassagFailed(e.toString());
+            }
+        });
+    }
+
 
     public  void goToLoginActivity(Context context){
         Intent intent = new Intent(context.getApplicationContext(), LoginActivity.class);
@@ -812,4 +1005,16 @@ public class Presenter {
     public UserInfo deserializeUserInfo(String json){
         return gson.fromJson(json,UserInfo.class);
     }
+    private String getDate(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd,yyyy");
+        return simpleDateFormat.format(calendar.getTime());
+    }
+    private String gettime(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm a");
+        return simpleDateFormat.format(calendar.getTime());
+    }
+
+
 }

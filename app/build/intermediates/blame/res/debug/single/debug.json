@@ -100,6 +100,10 @@
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable-v24/online.png"
     },
     {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable_recierved_massage_shape.xml.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable/recierved_massage_shape.xml"
+    },
+    {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_launcher_background.png.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-xhdpi/ic_launcher_background.png"
     },
@@ -140,12 +144,12 @@
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/mipmap-xxhdpi/email_round.png"
     },
     {
-        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-xxhdpi_email_background.png.flat",
-        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-xxhdpi/email_background.png"
-    },
-    {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/layout_fragment_blank.xml.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/layout/fragment_blank.xml"
+    },
+    {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-xxhdpi_email_background.png.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-xxhdpi/email_background.png"
     },
     {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-v24_login_photo.jpg.flat",
@@ -184,12 +188,20 @@
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/mipmap-xhdpi/email_round.png"
     },
     {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable_cicular_progress_bar.xml.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable/cicular_progress_bar.xml"
+    },
+    {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/mipmap-mdpi_email_round.png.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/mipmap-mdpi/email_round.png"
     },
     {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-v24_profile_activity.png.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable-v24/profile_activity.png"
+    },
+    {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable_send_files.png.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable/send_files.png"
     },
     {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-v24_profile_image.png.flat",
@@ -268,6 +280,10 @@
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-hdpi/ic_email_black_24dp.png"
     },
     {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable_send_massage_shape.xml.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable/send_massage_shape.xml"
+    },
+    {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_lock_outline_black_24dp.png.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-hdpi/ic_lock_outline_black_24dp.png"
     },
@@ -308,6 +324,10 @@
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_lock_outline_black_24dp.xml"
     },
     {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable_file.png.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable/file.png"
+    },
+    {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_launcher_background.png.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-hdpi/ic_launcher_background.png"
     },
@@ -328,6 +348,10 @@
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/mipmap-mdpi/email.png"
     },
     {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/layout_custom_massage_layout.xml.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/layout/custom_massage_layout.xml"
+    },
+    {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_ic_launcher_background.xml.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_launcher_background.xml"
     },
@@ -342,6 +366,10 @@
     {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-mdpi_email_foreground.png.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/generated/res/pngs/debug/drawable-mdpi/email_foreground.png"
+    },
+    {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/layout_custom_toolbar.xml.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/layout/custom_toolbar.xml"
     },
     {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_lock_outline_black_24dp.png.flat",

@@ -8,6 +8,48 @@ public class UserInfo {
     private String userName;
     private String userStatus;
     private String profileIageUri;
+    private String state;
+    private String lastOnlinedate;
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "userName='" + userName + '\'' +
+                ", userStatus='" + userStatus + '\'' +
+                ", profileIageUri='" + profileIageUri + '\'' +
+                ", state='" + state + '\'' +
+                ", lastOnlinedate='" + lastOnlinedate + '\'' +
+                ", lastOnlinetime='" + lastOnlinetime + '\'' +
+                ", Uid='" + Uid + '\'' +
+                '}';
+    }
+
+    private String lastOnlinetime;
+
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getLastOnlinedate() {
+        return lastOnlinedate;
+    }
+
+    public void setLastOnlinedate(String lastOnlinedate) {
+        this.lastOnlinedate = lastOnlinedate;
+    }
+
+    public String getLastOnlinetime() {
+        return lastOnlinetime;
+    }
+
+    public void setLastOnlinetime(String lastOnlinetime) {
+        this.lastOnlinetime = lastOnlinetime;
+    }
 
     public String getUid() {
         return Uid;
@@ -20,16 +62,6 @@ public class UserInfo {
     private String Uid;
     public UserInfo(){
 
-    }
-
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "userName='" + userName + '\'' +
-                ", userStatus='" + userStatus + '\'' +
-                ", profileIageUri='" + profileIageUri + '\'' +
-                ", Uid='" + Uid + '\'' +
-                '}';
     }
 
     public String getUserName() {

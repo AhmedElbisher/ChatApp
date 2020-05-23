@@ -48,7 +48,6 @@ public class ContactsFragment extends Fragment implements UsersListAdapter.UserC
         }else {
             usersListAdapter.clearDate();
         }
-        Log.i("TAG", "OnFindContactComplete: ");
     }
 
 
@@ -64,7 +63,8 @@ public class ContactsFragment extends Fragment implements UsersListAdapter.UserC
         usersListAdapter = new UsersListAdapter(this);
         usersListAdapter.setIschatfragment(true);
         recyclerView.setAdapter(usersListAdapter);
-        presenter.findcontacts();
+        if(presenter.islogin())presenter.findcontacts();
+        else  presenter.goToLoginActivity(getContext());
         recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
         return v;
     }

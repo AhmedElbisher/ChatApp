@@ -61,6 +61,11 @@ public class GroupChatActivity extends AppCompatActivity  implements GroupActivi
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
     public void  init(){
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Group Chat");

@@ -4,11 +4,9 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,7 +17,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.chatapp.R;
 import com.example.chatapp.adapters.ViewPagerAdapter;
-import com.example.chatapp.model.UserInfo;
 import com.example.chatapp.presenters.MainActivityInterface;
 import com.example.chatapp.presenters.Presenter;
 import com.google.android.material.tabs.TabLayout;
@@ -49,17 +46,39 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
         presenter = Presenter.getInstance();
         presenter.setMainActivityInterface(this);
         initToolBar();
+        if(!presenter.islogin()) presenter.goToLoginActivity(this);
+        presenter.verifyUserExistace();
         initViewPager();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if(!presenter.islogin()) presenter.goToLoginActivity(this);
-        presenter.verifyUserExistace();
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        if(presenter.islogin()){
+            presenter.updateUserState("online");
+        }
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(presenter.islogin()){
+            presenter.updateUserState("offline");
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(presenter.islogin()){
+            presenter.updateUserState("offline");
+        }
+    }
 
     void initToolBar() {
         setSupportActionBar(toolbar);

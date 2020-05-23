@@ -31,7 +31,7 @@
             app:layout_constraintTop_toBottomOf="@+id/userName1" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profileImage1"
+            android:id="@+id/custom_profileImage"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_margin="8dp"
@@ -59,7 +59,7 @@
             android:textColor="@android:color/black"
             android:textSize="17sp"
             app:layout_constraintEnd_toStartOf="@+id/onLineImage"
-            app:layout_constraintStart_toEndOf="@+id/profileImage1"
+            app:layout_constraintStart_toEndOf="@+id/custom_profileImage"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView

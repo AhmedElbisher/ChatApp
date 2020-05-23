@@ -80,4 +80,9 @@ public class FindFriendsActivity extends AppCompatActivity implements FindFrinds
     public void onCancelClic(UserInfo userInfo) {
 
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 }
