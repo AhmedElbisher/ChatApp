@@ -1431,6 +1431,7 @@ drawable email_foreground
 drawable file
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable gradient
 drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
 drawable ic_edit_black_24dp
@@ -1642,7 +1643,6 @@ id find_frinds
 id fitCenter
 id fitToContents
 id fixed
-id fogetPassword
 id forever
 id friendName
 id friendStatus
@@ -1681,7 +1681,6 @@ id log_out
 id loginButton
 id loginByPhone
 id loginEmail
-id loodingBar
 id masked
 id massageImage
 id media_actions
@@ -1747,6 +1746,7 @@ id profile_image
 id progressBar
 id progress_circular
 id progress_horizontal
+id progressbarLayout
 id radio
 id recievedMassageText
 id rectangle
@@ -2163,6 +2163,7 @@ string pick_image_intent_chooser_title
 string project_id
 string search_menu_title
 string send_massage_request
+string sign_up
 string status_bar_notification_info_overflow
 style AlerDailog
 style AlertDialog_AppCompat

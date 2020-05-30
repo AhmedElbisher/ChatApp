@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,15 +24,17 @@ public class LoginActivity extends AppCompatActivity implements LoginInterface, 
     EditText loginEmail;
     @BindView(R.id.LoginPassword)
     EditText LoginPassword;
-    @BindView(R.id.fogetPassword)
-    TextView fogetPassword;
     @BindView(R.id.loginButton)
     Button loginButton;
-    @BindView(R.id.needAccount)
-    TextView needAccount;
     @BindView(R.id.loginByPhone)
     Button loginByPhone;
     Presenter presenter;
+    @BindView(R.id.needAccount)
+    Button needAccount;
+    @BindView(R.id.progressbarLayout)
+    LinearLayout progressBar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements LoginInterface, 
 
     }
 
-    public  void goToRegisterActivity(){
+    public void goToRegisterActivity() {
         Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivity(intent);
     }
@@ -54,20 +56,24 @@ public class LoginActivity extends AppCompatActivity implements LoginInterface, 
 
     @Override
     public void onLogInSuccedded() {
+        progressBar.setVisibility(View.GONE);
         presenter.goToMainActivity(this);
 
     }
 
     @Override
     public void onLogInFailed(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
+        int index = error.indexOf(" ");
+        Toast.makeText(this, error.substring(index, error.length()), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.loginButton:
-                presenter.logIn(loginEmail.getText().toString(),LoginPassword.getText().toString());
+                progressBar.setVisibility(View.VISIBLE);
+                presenter.logIn(loginEmail.getText().toString(), LoginPassword.getText().toString());
                 break;
             case R.id.needAccount:
                 goToRegisterActivity();

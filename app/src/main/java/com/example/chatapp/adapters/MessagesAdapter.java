@@ -1,5 +1,7 @@
 package com.example.chatapp.adapters;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +17,7 @@ import com.example.chatapp.ui.chats.ChatsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
-
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MessageViewHolder> {
 
 
@@ -55,7 +54,18 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             if(currentMassage.getType().equals(ChatsActivity.FILE_TEXT)) {
                 holder.userMassageText.setText(currentMassage.getMassageText());
             }else{
-                Picasso.get().load(currentMassage.getMassageText()).placeholder(R.drawable.file).into(holder.useMassageImage);
+                if(currentMassage.getType().equals(ChatsActivity.FILE_IMAGE)) {
+                    Picasso.get().load(currentMassage.getMassageText()).placeholder(R.drawable.file).into(holder.useMassageImage);
+                }else{
+                    holder.useMassageImage.setImageResource(R.drawable.file);
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentMassage.getMassageText()));
+                            v.getContext().startActivity(intent);
+                        }
+                    });
+                }
             }
         }else{
             setVisabilityofviews(false,currentMassage.getType() ,holder);
@@ -63,7 +73,18 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             if(currentMassage.getType().equals(ChatsActivity.FILE_TEXT)) {
                 holder.friendMassageText.setText(currentMassage.getMassageText());
             }else{
-                Picasso.get().load(currentMassage.getMassageText()).placeholder(R.drawable.file).into(holder.friendMassageImage);
+                if(currentMassage.getType().equals(ChatsActivity.FILE_IMAGE)) {
+                    Picasso.get().load(currentMassage.getMassageText()).placeholder(R.drawable.file).into(holder.friendMassageImage);
+                }else{
+                    holder.friendMassageImage.setImageResource(R.drawable.file);
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentMassage.getMassageText()));
+                            v.getContext().startActivity(intent);
+                        }
+                    });
+                }
             }
         }
     }

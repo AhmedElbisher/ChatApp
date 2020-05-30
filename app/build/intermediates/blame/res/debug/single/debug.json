@@ -196,12 +196,12 @@
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/mipmap-mdpi/email_round.png"
     },
     {
-        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-v24_profile_activity.png.flat",
-        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable-v24/profile_activity.png"
-    },
-    {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable_send_files.png.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable/send_files.png"
+    },
+    {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-v24_profile_activity.png.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable-v24/profile_activity.png"
     },
     {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable-v24_profile_image.png.flat",
@@ -290,6 +290,10 @@
     {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/drawable_gradient.xml.flat",
+        "source": "/home/ahmed/AndroidStudioProjects/ChatApp/app/src/main/res/drawable/gradient.xml"
     },
     {
         "merged": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/res/merged/debug/layout_activity_phone.xml.flat",

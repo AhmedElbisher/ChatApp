@@ -1,14 +1,17 @@
 package com.example.chatapp.presenters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.example.chatapp.model.MassageDetails;
 import com.example.chatapp.model.UserInfo;
@@ -39,6 +42,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -299,7 +303,7 @@ public class Presenter {
                             curentUser.setUid(dataSnapshot1.getValue().toString());
                         }
                     }
-                    findFrindsInterface.onRetreiveUser(curentUser);
+                    if(curentUser.getUid() != null ) findFrindsInterface.onRetreiveUser(curentUser);
                 }
             }
 
@@ -351,9 +355,9 @@ public class Presenter {
     }
     public void logIn(String email,String password){
         if(TextUtils.isEmpty(email)){
-            loginInterface.onLogInFailed("email field is empty");
+            loginInterface.onLogInFailed(" email field is empty");
         }else if(TextUtils.isEmpty(password)){
-            loginInterface.onLogInFailed("password field is empty");
+            loginInterface.onLogInFailed( " password field is empty");
         }else{
             mAuth.signInWithEmailAndPassword(email,password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -511,11 +515,11 @@ public class Presenter {
             }
         });
     }
-    public  void  senduserVerificationCode(String phoneNumber, PhoneActivity activity){
+    public  void  senduserVerificationCode(String phoneNumber, Activity activity){
         if(TextUtils.isEmpty(phoneNumber)){
             phoneActivityInterface.onVrerificationFailed("enter a valid phone numder");
         }else {
-            phoneAuthProvider.verifyPhoneNumber(
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     phoneNumber,        // Phone number to verify
                     60,                 // Timeout duration
                     TimeUnit.SECONDS,   // Unit of timeout
@@ -528,6 +532,8 @@ public class Presenter {
 
                         @Override
                         public void onVerificationFailed(@NonNull FirebaseException e) {
+
+
                             phoneActivityInterface.onVrerificationFailed(e.toString());
                         }
 
@@ -949,22 +955,22 @@ public class Presenter {
         mRef.child("users").child(getcurrentUserId()).child("userState")
                 .updateChildren(userState);
     }
-    public  void  sendfiles(Uri fileUri , String fileType,String currendUserId , String friendID){
+    public  void  sendfiles(Uri fileUri, String fileType, String fileExtention, String currendUserId, String friendID){
         String messageKey = getMessageKey(currendUserId,friendID);
         mStorageReference = FirebaseStorage.getInstance().getReference().child(fileType+" files");
-        mStorageReference.child(messageKey+".png").putFile(fileUri)
+        mStorageReference.child(fileType+"."+fileExtention).putFile(fileUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                         while (!urlTask.isSuccessful());
                         Uri downloadUrl = urlTask.getResult();
-                        URL fileUrl = null;
                         try {
-                            fileUrl= new URL(downloadUrl.toString());
-                            sendSingleChatMassage(fileUrl.toString(),currendUserId,friendID,messageKey,fileType);
+                            URL fileUrl = new URL(downloadUrl.toString());
+                           sendSingleChatMassage(fileUrl.toString(),currendUserId,friendID,messageKey,fileType);
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
+                            singleChatInterface.onSendMassagFailed(e.toString());
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {

@@ -40,7 +40,14 @@ public class ChatsActivity extends AppCompatActivity implements View.OnClickList
 
     final static int IMAGE_INTENT = 555;
     public static String FILE_IMAGE = "image";
+    public static String FILE_APPLICATION = "application";
     public static String FILE_TEXT = "text";
+    public static String FILE_IMAGE_EXTENTION = "jpg";
+    public static String FILE_PDF_EXTENTION = "pdf";
+    public static String FILE_DOCS_EXTENTION = "docx";
+
+
+
     UserInfo friendInfo;
     Presenter presenter;
     String currentUserId;
@@ -62,6 +69,7 @@ public class ChatsActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
     String fileType = "";
+    String fileExtention="";
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     private Uri fileUri;
@@ -146,7 +154,7 @@ public class ChatsActivity extends AppCompatActivity implements View.OnClickList
         CharSequence options[] = new CharSequence[]{
                 "image",
                 "pdf file",
-                "ms file"
+                "ms word file"
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -157,7 +165,21 @@ public class ChatsActivity extends AppCompatActivity implements View.OnClickList
                 switch (which) {
                     case 0:
                         fileType = FILE_IMAGE;
+                        fileExtention = FILE_IMAGE_EXTENTION;
                         getfilefromlocalStorage(fileType);
+
+                        break;
+                    case 1:
+                        fileType = FILE_APPLICATION;
+                        fileExtention = FILE_PDF_EXTENTION;
+                        getfilefromlocalStorage(fileType);
+
+                        break;
+                    case 2:
+                        fileType = FILE_APPLICATION;
+                        fileExtention = FILE_DOCS_EXTENTION;
+                        getfilefromlocalStorage(fileType);
+
                         break;
                     default:
                         break;
@@ -165,7 +187,7 @@ public class ChatsActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
 
-            private void getfilefromlocalStorage(String fileType) {
+            private void getfilefromlocalStorage(String fileType ) {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setType(fileType + "/*");
@@ -182,7 +204,7 @@ public class ChatsActivity extends AppCompatActivity implements View.OnClickList
         if (requestCode == IMAGE_INTENT && resultCode == RESULT_OK && data != null && data.getData() != null) {
             fileUri = data.getData();
             progressBar.setVisibility(View.VISIBLE);
-            presenter.sendfiles(fileUri, fileType, presenter.getcurrentUserId(), friendInfo.getUid());
+            presenter.sendfiles(fileUri, fileType, fileExtention,presenter.getcurrentUserId(), friendInfo.getUid());
         }
     }
 
@@ -193,7 +215,7 @@ public class ChatsActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onSendMassagFailed(String error) {
-        Toast.makeText(this, "failed to send this massage" + error, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "failed to    " + error, Toast.LENGTH_SHORT).show();
     }
 
     @Override

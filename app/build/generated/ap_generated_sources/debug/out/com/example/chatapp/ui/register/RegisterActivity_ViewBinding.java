@@ -4,7 +4,7 @@ package com.example.chatapp.ui.register;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
@@ -30,7 +30,7 @@ public class RegisterActivity_ViewBinding implements Unbinder {
     target.registerPasswordText = Utils.findRequiredViewAsType(source, R.id.registerPasswordText, "field 'registerPasswordText'", EditText.class);
     target.createAccountButton = Utils.findRequiredViewAsType(source, R.id.createAccountButton, "field 'createAccountButton'", Button.class);
     target.alreadyhaveAccountText = Utils.findRequiredViewAsType(source, R.id.alreadyhaveAccountText, "field 'alreadyhaveAccountText'", TextView.class);
-    target.loodingBar = Utils.findRequiredViewAsType(source, R.id.loodingBar, "field 'loodingBar'", ProgressBar.class);
+    target.progressbarLayout = Utils.findRequiredViewAsType(source, R.id.progressbarLayout, "field 'progressbarLayout'", LinearLayout.class);
   }
 
   @Override
@@ -44,6 +44,6 @@ public class RegisterActivity_ViewBinding implements Unbinder {
     target.registerPasswordText = null;
     target.createAccountButton = null;
     target.alreadyhaveAccountText = null;
-    target.loodingBar = null;
+    target.progressbarLayout = null;
   }
 }

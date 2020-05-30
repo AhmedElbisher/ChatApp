@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +28,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterInter
     Button createAccountButton;
     @BindView(R.id.alreadyhaveAccountText)
     TextView alreadyhaveAccountText;
-    @BindView(R.id.loodingBar)
-    ProgressBar loodingBar;
+    @BindView(R.id.progressbarLayout)
+    LinearLayout progressbarLayout;
+
     private Presenter mPresenter;
     private InputMethodManager inputMethodManager;
 
@@ -42,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterInter
         mPresenter.setRegisterInterface(this);
         alreadyhaveAccountText.setOnClickListener(this);
         createAccountButton.setOnClickListener(this);
-        inputMethodManager =(InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
     }
 
 
@@ -53,13 +54,13 @@ public class RegisterActivity extends AppCompatActivity implements RegisterInter
                 mPresenter.goToLoginActivity(this);
                 break;
             case R.id.createAccountButton:
-                loodingBar.setVisibility(View.VISIBLE);
+                progressbarLayout.setVisibility(View.VISIBLE);
                 mPresenter.Register(registerEmailText.getText().toString(),
                         registerPasswordText.getText().toString());
                 break;
 
             default:
-                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
         }
 
@@ -67,16 +68,15 @@ public class RegisterActivity extends AppCompatActivity implements RegisterInter
 
     @Override
     public void onRegisterSuccess() {
-        loodingBar.setVisibility(View.INVISIBLE);
+        progressbarLayout.setVisibility(View.INVISIBLE);
         mPresenter.goToStings(this);
     }
 
     @Override
     public void onRegisterFailed(String error) {
-        loodingBar.setVisibility(View.INVISIBLE);
+        progressbarLayout.setVisibility(View.INVISIBLE);
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
-
 
 
 }

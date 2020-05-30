@@ -12,6 +12,11 @@
     <string name="Remove_frind">unfriend</string>
     <string name="Reqest_sent_state">sent</string>
     <string name="Reqest_recieve_state">recieved</string>
+    <string name="sign_up">Sign Up</string>
+
+
+
+
 
 
 </resources>

@@ -4,7 +4,7 @@ package com.example.chatapp.ui.login;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
 import butterknife.Unbinder;
@@ -27,10 +27,10 @@ public class LoginActivity_ViewBinding implements Unbinder {
 
     target.loginEmail = Utils.findRequiredViewAsType(source, R.id.loginEmail, "field 'loginEmail'", EditText.class);
     target.LoginPassword = Utils.findRequiredViewAsType(source, R.id.LoginPassword, "field 'LoginPassword'", EditText.class);
-    target.fogetPassword = Utils.findRequiredViewAsType(source, R.id.fogetPassword, "field 'fogetPassword'", TextView.class);
     target.loginButton = Utils.findRequiredViewAsType(source, R.id.loginButton, "field 'loginButton'", Button.class);
-    target.needAccount = Utils.findRequiredViewAsType(source, R.id.needAccount, "field 'needAccount'", TextView.class);
     target.loginByPhone = Utils.findRequiredViewAsType(source, R.id.loginByPhone, "field 'loginByPhone'", Button.class);
+    target.needAccount = Utils.findRequiredViewAsType(source, R.id.needAccount, "field 'needAccount'", Button.class);
+    target.progressBar = Utils.findRequiredViewAsType(source, R.id.progressbarLayout, "field 'progressBar'", LinearLayout.class);
   }
 
   @Override
@@ -42,9 +42,9 @@ public class LoginActivity_ViewBinding implements Unbinder {
 
     target.loginEmail = null;
     target.LoginPassword = null;
-    target.fogetPassword = null;
     target.loginButton = null;
-    target.needAccount = null;
     target.loginByPhone = null;
+    target.needAccount = null;
+    target.progressBar = null;
   }
 }
