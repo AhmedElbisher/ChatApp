@@ -14,7 +14,7 @@
 the functionalities of  this application:
 * users login and  sign up  with email or phone.
 * send , accept and cancel connection requests .
-* one-to one chat that every user can send and receive:
+* one-to-one chat that every user can send and receive:
   * text messages
   * photo of any format
   * pdf  or word file 
@@ -23,7 +23,9 @@ the functionalities of  this application:
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+|log In |chats|goups|
+|-------|----------|-----------|
+|![Example screenshot](https://github.com/AhmedElbisher/ChatApp/blob/master/chat%20app%20screen%20Images/chat_login.png?raw=true)|![Example screenshot](https://github.com/AhmedElbisher/ChatApp/blob/master/chat%20app%20screen%20Images/chats.png?raw=true)|![Example screenshot](https://github.com/AhmedElbisher/ChatApp/blob/master/chat%20app%20screen%20Images/create_new_group.png?raw=true)|
 
 ## Technologies
 * Tech 1 - version 1.0
