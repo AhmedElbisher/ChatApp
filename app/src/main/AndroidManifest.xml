@@ -5,8 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
-
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <application
         android:allowBackup="true"
@@ -15,9 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.chats.ChatsActivity"
+        <activity android:name=".ui.groupchats.AddFrindsToGroub"
+            android:parentActivityName=".ui.groupchats.GroupChatActivity"/>
+        <activity
+            android:name=".ui.chats.ChatsActivity"
             android:parentActivityName=".ui.main.MainActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.profile.FriendProfileActivity" />
         <activity
             android:name=".ui.findfrends.FindFriendsActivity"
@@ -31,7 +33,8 @@
             android:windowSoftInputMode="adjustResize" /> <!-- optional (needed if default theme has no action bar) -->
         <activity
             android:name=".ui.groupchats.GroupChatActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".ui.main.MainActivity"/>
         <activity
             android:name=".ui.sitings.SittingsActivity"
             android:parentActivityName=".ui.main.MainActivity"

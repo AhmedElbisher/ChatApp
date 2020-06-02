@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hi/values-hi.xml",
+            "outputFile": "/home/ahmed/Desktop/my githup projects/ChatApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hi/values-hi.xml",
             "map": [
                 {
                     "source": "/home/ahmed/.gradle/caches/transforms-2/files-2.1/6d4d75646c60d173998f54fdd716cbc4/jetified-firebase-messaging-20.1.7/res/values-hi/values.xml",

@@ -4,11 +4,11 @@ package com.example.chatapp.ui.groupchats;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.ImageView;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.Unbinder;
 import butterknife.internal.Utils;
 import com.example.chatapp.R;
@@ -28,10 +28,10 @@ public class GroupChatActivity_ViewBinding implements Unbinder {
     this.target = target;
 
     target.toolbar = Utils.findRequiredViewAsType(source, R.id.toolbar, "field 'toolbar'", Toolbar.class);
-    target.messagesTextView = Utils.findRequiredViewAsType(source, R.id.textView, "field 'messagesTextView'", TextView.class);
-    target.scrollView2 = Utils.findRequiredViewAsType(source, R.id.scrollView2, "field 'scrollView2'", ScrollView.class);
     target.sendButton = Utils.findRequiredViewAsType(source, R.id.imageButton, "field 'sendButton'", ImageButton.class);
     target.massageField = Utils.findRequiredViewAsType(source, R.id.editText2, "field 'massageField'", EditText.class);
+    target.groubChatRecyclerView = Utils.findRequiredViewAsType(source, R.id.groubChatRecyclerView, "field 'groubChatRecyclerView'", RecyclerView.class);
+    target.addPerson = Utils.findRequiredViewAsType(source, R.id.addPerson, "field 'addPerson'", ImageView.class);
   }
 
   @Override
@@ -42,9 +42,9 @@ public class GroupChatActivity_ViewBinding implements Unbinder {
     this.target = null;
 
     target.toolbar = null;
-    target.messagesTextView = null;
-    target.scrollView2 = null;
     target.sendButton = null;
     target.massageField = null;
+    target.groubChatRecyclerView = null;
+    target.addPerson = null;
   }
 }

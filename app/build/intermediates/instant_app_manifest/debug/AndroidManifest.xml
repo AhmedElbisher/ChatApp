@@ -32,6 +32,9 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
+            android:name="com.example.chatapp.ui.groupchats.AddFrindsToGroub"
+            android:parentActivityName="com.example.chatapp.ui.groupchats.GroupChatActivity" />
+        <activity
             android:name="com.example.chatapp.ui.chats.ChatsActivity"
             android:parentActivityName="com.example.chatapp.ui.main.MainActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -48,6 +51,7 @@
             android:windowSoftInputMode="adjustResize" /> <!-- optional (needed if default theme has no action bar) -->
         <activity
             android:name="com.example.chatapp.ui.groupchats.GroupChatActivity"
+            android:parentActivityName="com.example.chatapp.ui.main.MainActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.example.chatapp.ui.sitings.SittingsActivity"

@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.chatapp.fragments.ChatsFragment;
 import com.example.chatapp.fragments.ContactsFragment;
 import com.example.chatapp.fragments.GroupFragment;
 import com.example.chatapp.fragments.RequestFragment;
@@ -32,9 +31,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position){
-            case 0 : return  "chats";
-            case 1 : return  "group";
-            case 2 : return  "requests";
+            case 0 : return  "Chats";
+            case 1 : return  "Groups";
+            case 2 : return  "Requests";
             default: return null;
         }
 

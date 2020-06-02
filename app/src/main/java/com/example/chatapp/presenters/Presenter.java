@@ -92,6 +92,11 @@ public class Presenter {
     private ContactsInterface contactsInterface;
     private  FindRequestsInterface findRequestsInterface;
     private  SingleChatInterface singleChatInterface;
+    private AddFriendToGroupInterface addFriendToGroupInterface;
+    public void setAddFriendToGroupInterface(AddFriendToGroupInterface addFriendToGroupInterface) {
+        this.addFriendToGroupInterface = addFriendToGroupInterface;
+    }
+
 
     public void setSingleChatInterface(SingleChatInterface singleChatInterface) {
         this.singleChatInterface = singleChatInterface;
@@ -236,16 +241,23 @@ public class Presenter {
                     String userName = dataSnapshot.child("name").getValue().toString();
                     String status = dataSnapshot.child("status").getValue().toString();
                     String image = dataSnapshot.child("image").getValue().toString();
-                    sittingInterface.onRetreiveUserData(USER_STATUS_IMAGE ,userName,status,image );
+                    if(sittingInterface != null)sittingInterface.onRetreiveUserData(USER_STATUS_IMAGE ,userName,status,image );
+                    if(groupActivityInterface != null)groupActivityInterface.onRetreiveUserData(USER_STATUS_IMAGE ,userName,status,image );
                 }else if((dataSnapshot.exists()) && dataSnapshot.hasChild("name") && dataSnapshot.hasChild("status")){
                     String userName = dataSnapshot.child("name").getValue().toString();
                     String status = dataSnapshot.child("status").getValue().toString();
-                    sittingInterface.onRetreiveUserData(USER_STATUS ,userName,status,"" );
+                    if(sittingInterface != null) sittingInterface.onRetreiveUserData(USER_STATUS ,userName,status,"" );
+                    if(groupActivityInterface != null)groupActivityInterface.onRetreiveUserData(USER_STATUS ,userName,status,"" );
+
                 }else if((dataSnapshot.exists()) && dataSnapshot.hasChild("name")){
                     String userName = dataSnapshot.child("name").getValue().toString();
-                    sittingInterface.onRetreiveUserData(USER_only ,userName,"i am here in charAPP","" );
+                    if(sittingInterface != null)sittingInterface.onRetreiveUserData(USER_only ,userName,"i am here in charAPP","" );
+                    groupActivityInterface.onRetreiveUserData(USER_only ,userName,"i am here in charAPP","" );
+
                 }else{
-                    sittingInterface.onRetreiveUserData(NO_DATA ,"","","" );
+                    if(sittingInterface != null)sittingInterface.onRetreiveUserData(NO_DATA ,"","","" );
+                    if(groupActivityInterface != null)groupActivityInterface.onRetreiveUserData(NO_DATA ,"","","" );
+
                 }
 
             }
@@ -373,7 +385,7 @@ public class Presenter {
                                         // or directly send it to server
                                         Map<String , Object> map = new HashMap<>();
                                         map.put("deviceToken",deviceToken);
-                                        mRef.child("users").child(currentUser.getUid())
+                                        mRef.child("users").child(getcurrentUserId())
                                                 .updateChildren(map)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override
@@ -417,6 +429,7 @@ public class Presenter {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
+                            mRef.child("users").child(getcurrentUserId()).child("groups").push().setValue(groupName);
                             mainActivityInterface.onCreatGroupComplete(true);
                         }else{
                             mainActivityInterface.onCreatGroupComplete(false);
@@ -425,14 +438,14 @@ public class Presenter {
                 });
     }
     public  void  retreiveGroupsNames(){
-        mRef.child("groups").addValueEventListener(new ValueEventListener() {
+        mRef.child("users").child(getcurrentUserId()).child("groups").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Set<String> groupsSet = new HashSet<>();
                 ArrayList<String > result = new ArrayList<>();
                 Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
                 while (iterator.hasNext()){
-                    groupsSet.add(iterator.next().getKey());
+                    groupsSet.add(iterator.next().getValue().toString());
                 }
                 result.addAll(groupsSet);
                 groupFragmentInterface.onGroupsArrayChange(result);
@@ -444,20 +457,23 @@ public class Presenter {
             }
         });
     }
-    public  void  sendGroupMassage(String massage,String groupName){
+    public  void  sendGroupMassage(String massage, String groupName, UserInfo currentUserInfo){
         mGroupRef= mRef.child("groups").child(groupName);
         if(TextUtils.isEmpty(massage)){
             groupActivityInterface.onSendMassageComplete(false,"please enter valid massage");
         }else{
+            String massageId = mGroupRef.child("massages").push().getKey();
             String date = getDate();
             String time = gettime();
             HashMap<String,Object> massageinfo = new HashMap<>();
-            massageinfo.put("userName" , userNAme);
+           // massageinfo.put("userName" , userNAme);
+            massageinfo.put("massageId",massageId);
             massageinfo.put("massage",massage);
-            massageinfo.put("date",date);
-            massageinfo.put("time",time);
-
-            mGroupRef.push().updateChildren(massageinfo)
+            //massageinfo.put("date",date);
+            //massageinfo.put("time",time);
+            massageinfo.put("userImage" , currentUserInfo.getProfileIageUri());
+            massageinfo.put("userID" , mPresenter.getcurrentUserId());
+            mGroupRef.child("massages").push().updateChildren(massageinfo)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -471,10 +487,11 @@ public class Presenter {
         }
     }
     public void  getGroupMassages(String groupname){
-        mRef.child("groups").child(groupname).addChildEventListener(new ChildEventListener() {
+        mRef.child("groups").child(groupname).child("massages").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 HashMap<String,String> result = new HashMap<>();
+                Log.i("TAG", "onChildAdded:");
                 if(dataSnapshot.exists()){
                     Iterator iterator = dataSnapshot.getChildren().iterator();
                     while (iterator.hasNext()){
@@ -1023,4 +1040,50 @@ public class Presenter {
     }
 
 
+    public void addFriendToGroup(String groupName, UserInfo user) {
+        mRef.child("groups").child(groupName).child("members").push().setValue(user.getUid())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            mRef.child("users").child(user.getUid()).child("groups")
+                                    .push().setValue(groupName);
+                        }
+                    }
+                });
+    }
+
+    public  void  retrieveGroupMembers(String groupName){
+        mRef.child("groups").child(groupName).child("members")
+                .addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                        if(dataSnapshot.exists()){
+                            addFriendToGroupInterface.onRetreiveGroupMembers(dataSnapshot.getValue().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+    }
 }

@@ -1,10 +1,10 @@
-#Fri May 29 06:57:43 EET 2020
+#Tue Jun 02 22:36:59 EET 2020
 path.2=classes2.dex
 path.1=classes.dex
 path.0=classes.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
-base.2=/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/dex/debug/mergeExtDexDebug/out/classes2.dex
-base.1=/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/dex/debug/mergeProjectDexDebug/out/classes.dex
-base.0=/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex
+base.2=/home/ahmed/Desktop/my githup projects/ChatApp/app/build/intermediates/dex/debug/mergeExtDexDebug/out/classes2.dex
+base.1=/home/ahmed/Desktop/my githup projects/ChatApp/app/build/intermediates/dex/debug/mergeProjectDexDebug/out/classes.dex
+base.0=/home/ahmed/Desktop/my githup projects/ChatApp/app/build/intermediates/dex/debug/mergeExtDexDebug/out/classes.dex

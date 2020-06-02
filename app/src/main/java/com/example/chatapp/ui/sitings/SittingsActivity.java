@@ -39,8 +39,6 @@ public class SittingsActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.update)
     Button updateButton;
     Presenter presenter;
-    @BindView(R.id.sittingToolBar)
-    Toolbar sittingToolBar;
 
 
     @Override
@@ -53,10 +51,10 @@ public class SittingsActivity extends AppCompatActivity implements View.OnClickL
         updateButton.setOnClickListener(this);
         profileImage.setOnClickListener(this);
         presenter.retreiveUserInfo();
-        setSupportActionBar(sittingToolBar);
-        getSupportActionBar().setTitle("Sittings");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        setSupportActionBar(sittingToolBar);
+//        getSupportActionBar().setTitle("Sittings");
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
 

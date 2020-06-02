@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/ahmed/AndroidStudioProjects/ChatApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-it/values-it.xml",
+            "outputFile": "/home/ahmed/Desktop/my githup projects/ChatApp/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-it/values-it.xml",
             "map": [
                 {
                     "source": "/home/ahmed/.gradle/caches/transforms-2/files-2.1/ce96d7613e178e2b236e28b668618a19/appcompat-1.1.0/res/values-it/values-it.xml",

@@ -13,10 +13,7 @@
     <string name="Reqest_sent_state">sent</string>
     <string name="Reqest_recieve_state">recieved</string>
     <string name="sign_up">Sign Up</string>
-
-
-
-
+    <string name="add_to_group">add</string>
 
 
 </resources>

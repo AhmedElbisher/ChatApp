@@ -42,7 +42,7 @@ public class FindFriendsActivity extends AppCompatActivity implements FindFrinds
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Find Frinds");
+        getSupportActionBar().setTitle("People");
 
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         usersListAdapter = new UsersListAdapter(this);

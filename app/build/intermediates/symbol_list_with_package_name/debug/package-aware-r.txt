@@ -1386,6 +1386,8 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable baseline_login_black_18dp
+drawable baseline_miscellaneous_services_black_18dp
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -1427,11 +1429,12 @@ drawable edit_profile
 drawable edit_status
 drawable email
 drawable email_background
-drawable email_foreground
 drawable file
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable gradient
+drawable ic_add_person
+drawable ic_baseline_group_add_24
 drawable ic_calendar_black_24dp
 drawable ic_clear_black_24dp
 drawable ic_edit_black_24dp
@@ -1476,6 +1479,8 @@ drawable phone
 drawable profile_activity
 drawable profile_image
 drawable recierved_massage_shape
+drawable rect_backgroun
+drawable rect_background_primary
 drawable send_files
 drawable send_massage_shape
 drawable send_message
@@ -1552,7 +1557,11 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addFriendToGroup
+id addFriendsReclerView
+id addFrindsToolBar
 id addGroup
+id addPerson
 id adjust_height
 id adjust_width
 id alertTitle
@@ -1639,7 +1648,6 @@ id fill_horizontal
 id fill_vertical
 id filled
 id filter_chip
-id find_frinds
 id fitCenter
 id fitToContents
 id fixed
@@ -1651,6 +1659,7 @@ id friendsRecyclerView
 id ghost_view
 id ghost_view_holder
 id gone
+id groubChatRecyclerView
 id groupNameTextView
 id group_divider
 id grouprecyclerView
@@ -1731,6 +1740,7 @@ id onLineImage
 id onTouch
 id outline
 id oval
+id ownerMassage
 id packed
 id parallax
 id parent
@@ -1753,7 +1763,6 @@ id rectangle
 id recyclerView
 id registerEmailText
 id registerPasswordText
-id requests
 id requestsRecyclerView
 id right
 id right_icon
@@ -1767,7 +1776,6 @@ id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
-id scrollView2
 id scrollable
 id search_badge
 id search_bar
@@ -1786,12 +1794,13 @@ id sendCodeButton
 id sendCodeButtonCard
 id sendFile
 id send_massage
+id senderMassage
 id senderMassageText
+id senderPhoto
 id shortcut
 id showCustom
 id showHome
 id showTitle
-id sittingToolBar
 id skipCollapsed
 id slide
 id smallLabel
@@ -1832,7 +1841,6 @@ id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
-id textView
 id text_input_end_icon
 id text_input_start_icon
 id textinput_counter
@@ -1860,6 +1868,8 @@ id useLogo
 id userName
 id userName1
 id userNameCard
+id userNamex
+id userProfileImagex
 id userStatus
 id userStatus1
 id usersRecyclerView
@@ -1935,6 +1945,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_add_frinds_to_groub
 layout activity_chats
 layout activity_find_friends
 layout activity_friend_profile
@@ -1944,6 +1955,7 @@ layout activity_main
 layout activity_phone
 layout activity_register
 layout activity_sitings
+layout add_friends_to_groub_list_item
 layout crop_image_activity
 layout crop_image_view
 layout custom_dialog
@@ -1965,9 +1977,9 @@ layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_blank
-layout fragment_chats
 layout fragment_contacts
 layout fragment_group
+layout groub_massage_layout
 layout groups_list_item
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
@@ -2068,6 +2080,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string accept_massage_request
+string add_to_group
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior

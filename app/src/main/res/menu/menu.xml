@@ -2,26 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/find_frinds"
-        android:title="Find frinds"
-        app:showAsAction="never"/>
-
     <item android:id="@+id/stings"
         android:title="Sittings"
-        app:showAsAction="never"/>
-    <item android:id="@+id/addGroup"
-        android:title="Add group chat"
-        app:showAsAction="never"/>
+        android:icon="@drawable/baseline_miscellaneous_services_black_18dp"
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/log_out"
         android:title="log out"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/requests"
-        android:title="requests"
-        app:showAsAction="never"/>
-
-
-
+        android:icon="@drawable/baseline_login_black_18dp"
+        app:showAsAction="ifRoom"/>
 
 </menu>

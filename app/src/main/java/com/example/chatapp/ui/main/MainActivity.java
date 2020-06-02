@@ -1,6 +1,7 @@
 package com.example.chatapp.ui.main;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,15 +18,24 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.chatapp.R;
 import com.example.chatapp.adapters.ViewPagerAdapter;
+import com.example.chatapp.fragments.ContactsFragment;
+import com.example.chatapp.fragments.GroupFragment;
+import com.example.chatapp.model.UserInfo;
+import com.example.chatapp.presenters.GroupFragmentInterface;
 import com.example.chatapp.presenters.MainActivityInterface;
 import com.example.chatapp.presenters.Presenter;
+import com.example.chatapp.ui.groupchats.GroupChatActivity;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.firestore.auth.User;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity implements MainActivityInterface {
+public class MainActivity extends AppCompatActivity implements MainActivityInterface , ContactsFragment.ContactesFragmentInterface, GroupFragment.GroupFragmentInterface {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -35,18 +45,20 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
     Presenter presenter;
+    ArrayList<UserInfo> userFrinds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        userFrinds = new ArrayList<>();
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),
                 ViewPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         presenter = Presenter.getInstance();
+        if(!presenter.islogin()) presenter.goToLoginActivity(this);
         presenter.setMainActivityInterface(this);
         initToolBar();
-        if(!presenter.islogin()) presenter.goToLoginActivity(this);
         presenter.verifyUserExistace();
         initViewPager();
     }
@@ -54,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
     @Override
     protected void onStart() {
         super.onStart();
+
     }
 
     @Override
@@ -62,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
         if(presenter.islogin()){
             presenter.updateUserState("online");
         }
-
     }
 
     @Override
@@ -108,12 +120,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
             case  R.id.stings:
                 presenter.goToStings(this);
                 break;
-            case  R.id.addGroup:
-                requestNewGroup();
-                break;
-            case R.id.find_frinds:
-                presenter.gotoFindFriends(this);
-                break;
+
             default:
                 break;
 
@@ -123,41 +130,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
         return super.onOptionsItemSelected(item);
     }
 
-    private void requestNewGroup() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this ,R.style.AlerDailog);
-        builder.setTitle("enter the group name");
-        final EditText editText = new EditText(this);
-        editText.setHintTextColor(Color.BLACK);
-        editText.setHint(" group name");
-        editText.setTextColor(Color.BLACK);
-        builder.setView(editText);
-        builder.setPositiveButton("create", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String groupName =  editText.getText().toString();
-                if(TextUtils.isEmpty(groupName)){
-                    Toast.makeText(MainActivity.this, "enter a valid name", Toast.LENGTH_SHORT).show();
-                }else{
-                    createNewGroup(groupName);
-                }
-
-            }
-        });
-        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.show();
-
-    }
-
-    private void createNewGroup(String groupName) {
-        presenter.createGroup(groupName);
-
-    }
 
     @Override
     public void onVerificationComplete(boolean userExsist) {
@@ -178,4 +150,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
     }
 
 
+    @Override
+    public void onRetreiveUserFrinds(ArrayList<UserInfo> usersInfo) {
+        userFrinds.clear();
+        userFrinds.addAll(usersInfo);
+    }
+
+    @Override
+    public void goToGroupChatACtivity(String groupName) {
+        Gson gson = new Gson();
+        String userFrindsString = gson.toJson(userFrinds);
+        Intent intent = new Intent(getApplicationContext(), GroupChatActivity.class);
+        intent.putExtra("groupName",groupName);
+        intent.putExtra("friends" , userFrindsString);
+        startActivity(intent);
+    }
 }

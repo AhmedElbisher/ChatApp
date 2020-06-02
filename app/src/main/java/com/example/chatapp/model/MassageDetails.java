@@ -6,6 +6,28 @@ public class MassageDetails {
     String type;
     String date;
     String time;
+    String senderPhotoUrl;
+
+    public String getMassageId() {
+        return massageId;
+    }
+
+    public void setMassageId(String massageId) {
+        this.massageId = massageId;
+    }
+
+    String massageId ;
+
+
+    public String getSenderPhotoUrl() {
+        return senderPhotoUrl;
+    }
+
+    public void setSenderPhotoUrl(String senderPhotoUrl) {
+        this.senderPhotoUrl = senderPhotoUrl;
+    }
+
+
 
     @Override
     public String toString() {

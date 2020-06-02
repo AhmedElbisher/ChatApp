@@ -1,97 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".ui.login.LoginActivity">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@android:color/white">
-
-        <View android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"/>
-
-        <View android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@android:color/white"/>
-    </LinearLayout>
-
-
     <androidx.cardview.widget.CardView
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="10dp"
-        app:cardCornerRadius="20dp"
-        android:elevation="16dp"
+        android:layout_marginRight="10dp"
         android:background="@android:color/white"
-        android:layout_centerInParent="true">
+        android:elevation="16dp"
+        app:cardCornerRadius="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
             android:background="@android:color/white"
-            android:layout_height="match_parent">
+            android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                app:cardCornerRadius="8dp"
-                android:elevation="8dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginBottom="8dp"
-                >
+                android:background="@android:color/white"
+                android:elevation="8dp"
+                app:cardCornerRadius="8dp">
+
                 <EditText
-                    android:layout_height="match_parent"
                     android:id="@+id/registerEmailText"
-                    android:drawableLeft="@drawable/ic_email_black_24dp"
-                    android:background="@android:color/white"
                     android:layout_width="match_parent"
-                    android:inputType="textEmailAddress"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:drawableLeft="@drawable/ic_email_black_24dp"
                     android:hint="  email.. "
-                    android:textColorHint="@android:color/black"
+                    android:inputType="textEmailAddress"
                     android:padding="5dp"
-                    android:textSize="20sp"
                     android:textColor="@android:color/black"
-                    />
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="20sp" />
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                app:cardCornerRadius="8dp"
-                android:elevation="8dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginBottom="8dp"
-                >
+                android:background="@android:color/white"
+                android:elevation="8dp"
+                app:cardCornerRadius="8dp">
+
                 <EditText
-                    android:layout_height="match_parent"
                     android:id="@+id/registerPasswordText"
-                    android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-                    android:background="@android:color/white"
-                    android:hint="  Password..."
                     android:layout_width="match_parent"
-                    android:padding="5dp"
-                    android:textColorHint="@android:color/black"
-                    android:textSize="20sp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+                    android:hint="  Password..."
                     android:inputType="textPassword"
+                    android:padding="5dp"
                     android:textColor="@android:color/black"
-                    />
+                    android:textColorHint="@android:color/darker_gray"
+                    android:textSize="20sp" />
 
             </androidx.cardview.widget.CardView>
 
@@ -99,59 +80,59 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                app:cardCornerRadius="16dp"
-                android:elevation="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginBottom="8dp"
-                >
+                android:background="@android:color/white"
+                android:elevation="16dp"
+                app:cardCornerRadius="16dp">
+
                 <Button
+                    android:id="@+id/createAccountButton"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/colorAccent"
-                    android:layout_width="match_parent"
-                    android:textSize="25sp"
                     android:text="Create account"
-                    android:id="@+id/createAccountButton"
                     android:textColor="@android:color/black"
-                    />
+                    android:textSize="25sp" />
 
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Already have account "
-                android:layout_marginTop="8dp"
                 android:id="@+id/alreadyhaveAccountText"
-                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:text="Already have account "
                 android:textColor="@color/colorAccent"
-                android:layout_gravity="center_horizontal"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
 
-        <LinearLayout android:layout_height="match_parent"
+        <LinearLayout
+            android:id="@+id/progressbarLayout"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:visibility="gone"
+            android:layout_height="match_parent"
             android:background="@android:color/darker_gray"
             android:gravity="center"
-            android:id="@+id/progressbarLayout">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 android:layout_gravity="center"
                 android:progressDrawable="@drawable/cicular_progress_bar"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/recyclerView"
                 app:layout_constraintStart_toStartOf="parent"
@@ -159,7 +140,6 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 
 
 </RelativeLayout>

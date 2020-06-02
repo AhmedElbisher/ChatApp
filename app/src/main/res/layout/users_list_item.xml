@@ -22,10 +22,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:background="@android:color/white"
-            android:textAlignment="textStart"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonsLinearLayout"
             app:layout_constraintEnd_toEndOf="@+id/userName1"
             app:layout_constraintStart_toStartOf="@+id/userName1"
             app:layout_constraintTop_toBottomOf="@+id/userName1" />
@@ -38,11 +39,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:src="@drawable/profile_image"
             app:civ_border_color="@android:color/darker_gray"
             app:civ_border_width="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/userName1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,17 +73,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/buttonsLinearLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
-            android:visibility="gone"
-            android:id="@+id/buttonsLinearLayout"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/userStatus1"
-            app:layout_constraintStart_toStartOf="@+id/userStatus1"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userStatus1">
 
             <Button
@@ -92,19 +90,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="16dp"
-                android:background="@android:color/holo_green_light"
-                android:text="Accept" />
+                android:layout_marginRight="4dp"
+                android:background="@drawable/rect_backgroun"
+                android:text="Accept"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/cancelButton"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="4dp"
                 android:layout_marginRight="16dp"
-                android:background="@android:color/holo_red_light"
+                android:background="@drawable/rect_background_primary"
                 android:text="Cancel"
-                android:textSize="15sp" />
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
 

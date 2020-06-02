@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.annotation.CallSuper;
 import androidx.annotation.UiThread;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import butterknife.Unbinder;
 import butterknife.internal.Utils;
@@ -33,7 +32,6 @@ public class SittingsActivity_ViewBinding implements Unbinder {
     target.userStatus = Utils.findRequiredViewAsType(source, R.id.userStatus, "field 'userStatus'", EditText.class);
     target.statusCard = Utils.findRequiredViewAsType(source, R.id.statusCard, "field 'statusCard'", CardView.class);
     target.updateButton = Utils.findRequiredViewAsType(source, R.id.update, "field 'updateButton'", Button.class);
-    target.sittingToolBar = Utils.findRequiredViewAsType(source, R.id.sittingToolBar, "field 'sittingToolBar'", Toolbar.class);
   }
 
   @Override
@@ -49,6 +47,5 @@ public class SittingsActivity_ViewBinding implements Unbinder {
     target.userStatus = null;
     target.statusCard = null;
     target.updateButton = null;
-    target.sittingToolBar = null;
   }
 }
