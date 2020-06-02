@@ -27,10 +27,16 @@ the functionalities of  this application:
 |-------|----------|-----------|
 |![Example screenshot](https://github.com/AhmedElbisher/ChatApp/blob/master/chat%20app%20screen%20Images/chat_login.png?raw=true)|![Example screenshot](https://github.com/AhmedElbisher/ChatApp/blob/master/chat%20app%20screen%20Images/chats.png?raw=true)|![Example screenshot](https://github.com/AhmedElbisher/ChatApp/blob/master/chat%20app%20screen%20Images/create_new_group.png?raw=true)|
 
+|single chat |group chat|requests|
+|-------|----------|-----------|
+|![Example screenshot](https://github.com/AhmedElbisher/ChatApp/blob/master/chat%20app%20screen%20Images/singleChat.png?raw=true)|![Example screenshot](https://github.com/AhmedElbisher/ChatApp/blob/master/chat%20app%20screen%20Images/group%20chat.png?raw=true)|![Example screenshot](https://github.com/AhmedElbisher/ChatApp/blob/master/chat%20app%20screen%20Images/reqeusts.png?raw=true)|
+
+[more screenshots](https://github.com/AhmedElbisher/ChatApp/tree/master/chat%20app%20screen%20Images)
+
 ## Technologies
 * Tech 1 - version 1.0
 * Tech 2 - version 2.0
-* Tech 3 - version 3.0
+* Tech 3 - version 3.0https://github.com/AhmedElbisher/ChatApp/blob/master/chat%20app%20screen%20Images/group%20chat.png?raw=true
 
 ## Setup
 Describe how to install / setup your local environement / add link to demo version.
