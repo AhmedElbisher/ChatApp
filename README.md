@@ -4,11 +4,7 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Screenshots](#screenshots)
-* [Setup](#setup)
-* [Features](#features)
-* [Status](#status)
-* [Inspiration](#inspiration)
-* [Contact](#contact)
+
 
 ## General info
 the functionalities of  this application:
