@@ -29,7 +29,6 @@ the functionalities of  this application:
 * Round image liberary com.theartofdev.edmodo:android-image-cropper:2.8.+
 * Fragments 
 * viewPager 
-* tabLayout
 
 
 ## Screenshots
