@@ -1,5 +1,5 @@
 # Chat App
->Android mobile application that implements some major  functionalities of regular chat applications.[APK](https://drive.google.com/file/d/13oQV19QWRxSryWOUBmnzKjEZ7De1ZeHU/view?usp=sharing)
+>Android  Application that implements some major  functionalities of regular chat applications.[APK](https://drive.google.com/file/d/13oQV19QWRxSryWOUBmnzKjEZ7De1ZeHU/view?usp=sharing)
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
