@@ -1,21 +1,17 @@
 # Chat App
->a native android mobile application that implements some major  functionalities of regular chat applications.[APK](https://drive.google.com/file/d/13oQV19QWRxSryWOUBmnzKjEZ7De1ZeHU/view?usp=sharing)
+>Android mobile application that implements some major  functionalities of regular chat applications.[APK](https://drive.google.com/file/d/13oQV19QWRxSryWOUBmnzKjEZ7De1ZeHU/view?usp=sharing)
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Screenshots](#screenshots)
 
 
-## General info
-the functionalities of  this application:
-* users login and  sign up  with email or phone.
-* send , accept and cancel connection requests .
-* one-to-one chat that every user can send and receive:
-  * text messages
-  * photo of any format
-  * pdf  or word file 
-* group chat with user friends 
-* show the user stutas online and last seen
+## Features
+* One-to-one/group chat
+* Friend request management
+* Sign in/sign up
+* Photo/File transfer
+* Show the user status online and last seen
 
 
 ## Technologies
